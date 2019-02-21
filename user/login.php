@@ -37,26 +37,9 @@ background-image: url('../image/2.jpg');
    
      <?php 
      
-     $path = $_SERVER['DOCUMENT_ROOT'];
-   $path .= "/webofart/include/header.php";
-   include_once($path);
-       if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-     if(isset($_SESSION['delete']))
-     {
-         echo '<h1>deleted account</h1><br>';
-          unset($_SESSION['delete']);
-           unset($_SESSION['id']);
-           session_destroy();
-     }
-      else if(isset($_SESSION['id']))
-        {
-           
-                header("Location: ../index.php");  
-      
-        }     
-       
+            $path = $_SERVER['DOCUMENT_ROOT'];
+            $path .= "/webofart/include/header.php";
+            include_once($path);       
         ?>
         <div class="container">
             <br>

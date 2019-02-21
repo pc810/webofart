@@ -11,10 +11,40 @@
             <li><a href="">About</a></li>
         </ul>
         <?php
-            session_start();
-            if(!isset($_SESSION["username"]))
+        
+              
+              
+        if(session_status() == PHP_SESSION_NONE)
+        {
+                          session_start();
+                if(isset($_SESSION["username"]))
+                {
+                    echo '<ul class="nav navbar-nav navbar-right">
+                        <li>
+                             <a href="/webofart/index.php">welcome</a>
+                        </li>
+                        <li>
+                            <a href="/webofart/validate/signout.php"><button class="mybtn btn-danger">signout</button></a>
+                        </li>
+                         </ul>';
+                }
+                else
+                {
+                    echo '<ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="/webofart/user/registration.php"><span class="glyphicon glyphicon-user"></span>  &nbsp;Sign up</a>
+            </li>
+            <li>
+                <a href="/webofart/user/login.php"><span class="glyphicon glyphicon-log-in"></span> &nbsp; Login</a>
+            </li>              
+        </ul>';
+                }
+            } 
+            else 
             {
-                session_destroy();
+                
+            
+          
                 echo '<ul class="nav navbar-nav navbar-right">
             <li>
                 <a href="/webofart/user/registration.php"><span class="glyphicon glyphicon-user"></span>  &nbsp;Sign up</a>
@@ -33,17 +63,7 @@
             </li>              
         </ul>*/
             }
-            else{ 
-                    echo '<ul class="nav navbar-nav navbar-right">
-                        <li>
-                             <a href="index.php">welcome</a>
-                        </li>
-                        <li>
-                            <a href="validate/signout.php"><button class="mybtn btn-danger">signout</button></a>
-                        </li>
-                         </ul>';
             
-            }
             ?>
     </div>
 </nav>
