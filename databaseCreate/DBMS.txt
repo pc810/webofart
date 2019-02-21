@@ -1,0 +1,8 @@
+ --> Images Folder to store all the images
+-->User(uid(pk),uname,uemail,upass,upropic,u_m_no.,uadd,udesig)
+-->login(login_id(pk),cid(fk))
+-->FAQ(data,uid(fk))
+-->Art(art_id(pk),uid(fk),image_loc,Genre,art_desc,tag,visitc){According to visitc popular list of art is shown(top 25)}
+-->Comment(Comment,uid(fk),art_id)
+-->Cart(art_id(fk),cart_id,uid(fk))
+--> Image db {to search for the particular image}
