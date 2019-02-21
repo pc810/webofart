@@ -6,13 +6,40 @@ and open the template in the editor.
 -->
 <html>
     <head>
+        <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display" rel="stylesheet">
         <meta charset="UTF-8">
         <title></title>
+        <style>
+        .yo
+        {
+            color: white;
+            font-family: 'Major Mono Display', monospace; 
+            font-size: 100px;
+            text-align:center ;
+        }
+            body
+            {
+                background-repeat: no-repeat;
+/*                background-image: url('../image/1.jpg');*/
+background-image: url('../image/2.jpg');
+            }
+        </style>
     </head>
-       
-    <body>
-     <H1 align="center">LOGIN PAGE</H1> 
+       <?php  
+                    $num = time()%4;
+                  //  $num=int($num);
+             //      $loc = $num+".jpg";
+                 //   echo "<body style='background-repeat: no-repeat; background-image: url(\"../image/$num.jpg>\");'>";
+                    
+        ?>
+<!--    <body  style="background-image: url('../image/1.jpg');">-->
+   
+   
      <?php 
+     
+     $path = $_SERVER['DOCUMENT_ROOT'];
+   $path .= "/webofart/include/header.php";
+   include_once($path);
        if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -30,27 +57,62 @@ and open the template in the editor.
       
         }     
        
+        ?>
+        <div class="container">
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            
+            <h1 class="yo">LOGIN PAGE</h1> 
+            <form action="../validate/validateuser.php" method="POST">
+            
+            
+             <br>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-md-4">          
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="name" name="username" placeholder="Username">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="name" name="password" placeholder="password">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    
+                </div>
+            </div>
+            <div class="row" style="text-align: center">
+                <div class="center-block">
+                </div>
+                <button type="submit" class="btn-success">Sign in</button>
+            </div>
+        </form>
+    </div>
+              
+
+
+ 
+     <?php 
+         $path = $_SERVER['DOCUMENT_ROOT'];
+   $path .= "/webofart/include/footer.php";
+   include_once($path);
      ?>
-     <form action="../index.php" method="POST">
-     <table border="1" align="center">
-         <tr>
-             <td>Username:  </td>
-             <td><input type="text" name="name">       
-         </tr>
-         <tr>
-             <td>Password:  </td>
-             <td><input type="password" name="password">       
-         </tr>
-         <tr>
-             <td><input type="submit" value="login"> </td>
-             <td><input type="reset">       
-         </tr>
-         <tr>
-             <td><a href="registration.php">New User</a></td>
-         </tr>
-         
-         
-     </table>
-     </form>
+          
     </body>
 </html>

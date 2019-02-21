@@ -5,18 +5,45 @@
         <div class="navbar-header">
             <img class="navbar-brand"src="/webofart/include/logo.png" alt="logo">
         </div>
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav">
+            <li><a href="">Buy Art</a></li>
+            <li><a href="">Sell Art</a></li>
+            <li><a href="">About</a></li>
+        </ul>
+        <?php
+            session_start();
+            if(!isset($_SESSION["username"]))
+            {
+                session_destroy();
+                echo '<ul class="nav navbar-nav navbar-right">
             <li>
                 <a href="/webofart/user/registration.php"><span class="glyphicon glyphicon-user"></span>  &nbsp;Sign up</a>
             </li>
             <li>
                 <a href="/webofart/user/login.php"><span class="glyphicon glyphicon-log-in"></span> &nbsp; Login</a>
             </li>              
-        </ul>
-        <ul class="nav navbar-nav">
-            <li><a href="">Buy Art</a></li>
-            <li><a href="">Sell Art</a></li>
-            <li><a href="">About</a></li>
-        </ul>
+        </ul>';
+       
+/*        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="/webofart/user/registration.php"><span class="glyphicon glyphicon-user"></span>  &nbsp;Sign up</a>
+            </li>
+            <li>
+                <a href="/webofart/user/login.php"><span class="glyphicon glyphicon-log-in"></span> &nbsp; Login</a>
+            </li>              
+        </ul>*/
+            }
+            else{ 
+                    echo '<ul class="nav navbar-nav navbar-right">
+                        <li>
+                             <a href="index.php">welcome</a>
+                        </li>
+                        <li>
+                            <a href="validate/signout.php"><button class="mybtn btn-danger">signout</button></a>
+                        </li>
+                         </ul>';
+            
+            }
+            ?>
     </div>
 </nav>

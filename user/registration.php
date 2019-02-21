@@ -1,6 +1,6 @@
 <html>
 <head>
-  
+ 
     <link rel="stylesheet" href="/webofart/css/bootstrap.css">
 <body>
         <?php 
