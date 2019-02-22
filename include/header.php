@@ -1,69 +1,68 @@
-<link href="/webofart/css/bootstrap.css" rel="stylesheet">
-<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">-->
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <img class="navbar-brand"src="/webofart/include/logo.png" alt="logo">
-        </div>
-        <ul class="nav navbar-nav">
-            <li><a href="">Buy Art</a></li>
-            <li><a href="">Sell Art</a></li>
-            <li><a href="">About</a></li>
-        </ul>
-        <?php
+<link rel="stylesheet" href="/webofart/bootstrap-4.3.1-dist/css/bootstrap.css">
+<link rel="stylesheet" href="/webofart/bootstrap-4.3.1-dist/css/myglyphicon.css">
+<nav class="navbar navbar-expand-sm bg-warning">
+    <img src="/webofart/include/logo.png" width="10%" height="5%">
+    <div class="collapse navbar-collapse">
+    <ul class="nav">  
+      <li class="nav-item"><a class="nav-link" href="/webofart/index.php">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="/webofart/page/buyart.php">Buy Art</a></li>
+      <li class="nav-item"><a class="nav-link" href="/webofart/page/sellart.php">Sell Art</a></li>
+      <li class="nav-item"><a class="nav-link" href="/webofart/page/about.php">About</a></li>
+    </ul>
+<!--     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+    <?php
         
-              
+        $flag = 0;
               
         if(session_status() == PHP_SESSION_NONE)
         {
                           session_start();
                 if(isset($_SESSION["username"]))
                 {
-                    echo '<ul class="nav navbar-nav navbar-right">
-                        <li>
-                             <a href="/webofart/index.php">welcome</a>
-                        </li>
-                        <li>
-                            <a href="/webofart/validate/signout.php"><button class="mybtn btn-danger">signout</button></a>
-                        </li>
-                         </ul>';
+                    $flag = 0;
                 }
                 else
                 {
-                    echo '<ul class="nav navbar-nav navbar-right">
-            <li>
-                <a href="/webofart/user/registration.php"><span class="glyphicon glyphicon-user"></span>  &nbsp;Sign up</a>
-            </li>
-            <li>
-                <a href="/webofart/user/login.php"><span class="glyphicon glyphicon-log-in"></span> &nbsp; Login</a>
-            </li>              
-        </ul>';
+                   $flag = 1;
                 }
-            } 
-            else 
+            }
+            else
             {
-                
-            
-          
-                echo '<ul class="nav navbar-nav navbar-right">
-            <li>
-                <a href="/webofart/user/registration.php"><span class="glyphicon glyphicon-user"></span>  &nbsp;Sign up</a>
-            </li>
-            <li>
-                <a href="/webofart/user/login.php"><span class="glyphicon glyphicon-log-in"></span> &nbsp; Login</a>
-            </li>              
-        </ul>';
-       
-/*        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a href="/webofart/user/registration.php"><span class="glyphicon glyphicon-user"></span>  &nbsp;Sign up</a>
-            </li>
-            <li>
-                <a href="/webofart/user/login.php"><span class="glyphicon glyphicon-log-in"></span> &nbsp; Login</a>
-            </li>              
-        </ul>*/
+                $flag = 1;
             }
             
+            if ($flag == 0)
+            {
+                
+                $length = strlen($_SESSION["username"]);
+                for($i=0;$i<(170-$length);$i++)
+                {
+                    echo "&nbsp;";
+                }
+                 echo '<ul class="nav navbar-right">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/webofart/index.php">signed in as '.$_SESSION["username"].'</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-danger" href="/webofart/validate/signout.php">SignOut</a>
+                            </li>   
+                        </ul>';
+            }
+            else
+            {
+                for($i=0;$i<(185);$i++)
+                {
+                    echo "&nbsp;";
+                }
+                echo '<ul class="nav float-right">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/webofart/user/registration.php"><span class="glyphicon glyphicon-user"></span> &nbsp; Sign up</a>
+                        </li>
+                        <li class="nav-item">    
+                            <a class="nav-link" href="/webofart/user/login.php"><span class="glyphicon glyphicon-log-in"></span> &nbsp;Login</a>
+                        </li>    
+                     </ul>';
+            }
             ?>
-    </div>
+  </div>  
 </nav>

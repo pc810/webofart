@@ -5502,6 +5502,18 @@ button.list-group-item-danger.active:focus {
 .panel-title > .small > a {
   color: inherit;
 }
+.myfooter {
+    clear: both;
+    position: relative;
+    height: 40px;
+    margin-top: -40px;
+    padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
 .footer {
   position: absolute;
   right: 0;

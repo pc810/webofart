@@ -49,6 +49,6 @@
 $path = $_SERVER['DOCUMENT_ROOT'];
    
    $path .= "/webofart/include/footer.php";
-   include_once($path);
+   //include_once($path);
 ?>
 

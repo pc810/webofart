@@ -17,7 +17,7 @@ and open the template in the editor.
             font-size: 100px;
             text-align:center ;
         }
-            body
+           body
             {
                 background-repeat: no-repeat;
 /*                background-image: url('../image/1.jpg');*/
@@ -25,32 +25,25 @@ background-image: url('../image/2.jpg');
             }
         </style>
     </head>
-       <?php  
-                    $num = time()%4;
-                  //  $num=int($num);
-             //      $loc = $num+".jpg";
-                 //   echo "<body style='background-repeat: no-repeat; background-image: url(\"../image/$num.jpg>\");'>";
-                    
-        ?>
-<!--    <body  style="background-image: url('../image/1.jpg');">-->
-   
-   
+    <body>
+        
      <?php 
      
             $path = $_SERVER['DOCUMENT_ROOT'];
             $path .= "/webofart/include/header.php";
             include_once($path);       
         ?>
+        
         <div class="container">
+            <span><br>
             <br>
             <br>
             <br>
             <br>
             <br>
-            <br>
-            
+            <span>
             <h1 class="yo">LOGIN PAGE</h1> 
-            <form action="../validate/validateuser.php" method="POST">
+            <form action="/webofart/validate/validateuser.php" method="POST">
             
             
              <br>
@@ -59,7 +52,7 @@ background-image: url('../image/2.jpg');
             <div class="row">
                 <div class="col-md-4">          
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group">
                         <input type="text" class="form-control" id="name" name="username" placeholder="Username">
                     </div>
@@ -71,7 +64,7 @@ background-image: url('../image/2.jpg');
                 <div class="col-md-4">
                     
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group">
                         <input type="password" class="form-control" id="name" name="password" placeholder="password">
                     </div>
@@ -81,21 +74,22 @@ background-image: url('../image/2.jpg');
                 </div>
             </div>
             <div class="row" style="text-align: center">
-                <div class="center-block">
+                <div class="col-md-12">
+                <button type="submit" class="btn btn-success">Sign in</button>
                 </div>
-                <button type="submit" class="btn-success">Sign in</button>
-            </div>
+                </div>
         </form>
-    </div>
+    </span>
+            </div>
               
-
+  
 
  
      <?php 
          $path = $_SERVER['DOCUMENT_ROOT'];
-   $path .= "/webofart/include/footer.php";
-   include_once($path);
+   $path .= "/webofart/include/lessfooter.php";
+  // include_once($path);
      ?>
-          
+    
     </body>
 </html>

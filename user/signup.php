@@ -1,6 +1,4 @@
 <html>
-    <head>
-        <link href="/webofart/css/bootstrap.css" rel="stylesheet">
     <body>
         <?php
           
@@ -17,8 +15,11 @@
                         if(strlen($_POST["password"])>5 && strlen($_POST["password"])<11)
                         {
                             try{
-                                session_start();
-                                    $dbhandler = new PDO('mysql:host=127.0.0.1;dbname=webofart','root','');	//192.168.29.150 ce119 ce119 ce119
+                                if(session_status() == PHP_SESSION_NONE)
+                                {
+                                    session_start();
+                                }
+                                $dbhandler = new PDO('mysql:host=127.0.0.1;dbname=webofart','root','');	//192.168.29.150 ce119 ce119 ce119
                                 //   $dbhandler = new PDO('mysql:host=192.168.29.150;dbname=ce119','ce119','ce119');	//192.168.29.150 ce119 ce119 ce119
                                     $dbhandler->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
                                     //$sql="insert into profile(name,password,gender,dob,training,placement,achivement,posted) values(priyank,1234567,male,now(),interested,notinterested,123,now()";
@@ -64,7 +65,7 @@
                                     */ 
                                    
    
-                                     echo "<center><h1 align='center'> YOUR DETAILS ARE REGISTERED</h1>";
+                                     echo "<br><br><center><h1 align='center'> YOUR DETAILS ARE REGISTERED</h1>";
                                      echo "<br><br><br><img src='/webofart/image/login_successful.png' alt='correct' height='300' width='300'>";
                                      echo "<br><br><br><h2 align='center'>Login Again</h2></center>";
                               }  
@@ -99,6 +100,5 @@
    $path .= "/webofart/include/footer.php";
    include_once($path);
         ?>   
-    </body>        
-    </head>    
+    </body>         
 </html>
