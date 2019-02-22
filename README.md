@@ -11,7 +11,7 @@ Dharmsinh Desai University,Nadiad [Computer Engineering]
 
 --> Designed,Coded And Tested By :
 
-	-- Priyank Choudhary
+	-- Priyank Chaudhari
 	
 	-- Swar Patel
 	
