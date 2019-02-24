@@ -6,7 +6,7 @@
    
    $path .= "/webofart/include/header.php";
    include_once($path);
-            if(isset($_POST["repassword"])&&isset($_POST["name"]) && isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["email"]) && isset($_POST["contact"]) && isset($_POST["gender"]) && isset($_POST["dob"]))
+            if(isset($_POST["user_state"]) && isset($_POST["user_pincode"])&& isset($_POST["user_city"])&& isset($_POST["user_addr"])&& isset($_POST["repassword"])&& isset($_POST["name"]) && isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["email"]) && isset($_POST["contact"]) && isset($_POST["gender"]) && isset($_POST["dob"]))
              {
                 if(strlen($_POST["name"])>=5)
                 {
@@ -24,7 +24,8 @@
                                     $dbhandler->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
                                     //$sql="insert into profile(name,password,gender,dob,training,placement,achivement,posted) values(priyank,1234567,male,now(),interested,notinterested,123,now()";
                             
-     $sql="insert into user (username,name,password,email,contact,gender,dob,posted) values(:username,:name,:password,:email,:contact,:gender,:dob,now())";
+     $sql="insert into user (username,name,password,email,contact,gender,dob,posted,user_state,user_pincode,user_city,user_addr,user_photo) "
+             . "values(:username,:name,:password,:email,:contact,:gender,:dob,now(),:user_state,:user_pincode,:user_city,:user_addr,:user_photo)";
                                    $stmt = $dbhandler->prepare($sql);
                                    $stmt->bindParam(":username", $_POST["username"]);
                                    $stmt->bindParam(":name", $_POST["name"]);
@@ -32,7 +33,41 @@
                                    $stmt->bindParam(":email", $_POST["email"]);
                                    $stmt->bindParam(":password", $_POST["password"]);
                                    $stmt->bindParam(":contact", $_POST["contact"]);
-                                   $stmt->bindParam(":dob", $_POST["dob"]);
+                                   $stmt->bindParam(":dob", $_POST["dob"]);                                 
+                                   $stmt->bindParam(":user_state", $_POST["user_state"]);
+                                   $stmt->bindParam(":user_pincode", $_POST["user_pincode"]);
+                                   $stmt->bindParam(":user_city", $_POST["user_city"]);
+                                   $stmt->bindParam(":user_addr", $_POST["user_addr"]);
+                                   if(!empty($_FILES["user_photo"]["name"]))
+                                   {
+                                        $target_location="../image/profile/".basename($_FILES["user_photo"]["name"]);
+                
+                                        if(! (move_uploaded_file($_FILES["user_photo"]["tmp_name"], $target_location)))
+                                                echo "Error: " . $_FILES["user_photo"]["error"] . "<br>";
+                                        else
+                                        {
+                                            $ext = pathinfo($target_location, PATHINFO_EXTENSION);
+                                            $new="../image/profile/".$_POST["username"].".".$ext;
+                                            rename($target_location,$new);
+                                            //header("Location:index.php?msg=Congrats, Your File is Successfully Uploaded.");
+                                           $e = array("jpeg","jpg","png");
+                                           if(in_array($ext, $e) == FALSE)
+                                           {
+                                               echo 'Error';
+                                               header("Location: /webofart/index.php");
+                                           }
+                                           else
+                                            {
+     
+                                            }
+                                           
+                                           
+                                            
+                                        }
+                                    }
+                                    $stmt->bindParam(":user_photo",$new);
+                               
+                                   
                                    $stmt->execute();
                                  
                                    /*  $sql = "select * from user";
