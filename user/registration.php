@@ -14,27 +14,19 @@
                 &nbsp;
             </div>
             <div class="col-md-8">
-                <form action="/webofart/user/signup.php" method="POST" enctype="multipart/form-data">
+                <form action="/webofart/user/signup.php" method="POST">
                     <table class="table table-striped text-center col-md-10"> 
                         <tr>
                             <td>
-                                 Name
+                                * Name
                             </td>
                             <td>
                                 <input type="text" name="name">
                             </td>
                         </tr>
-                      <tr>
-                            <td>
-                                   Profile Picture
-                            </td>
-                            <td>
-                                <input type="file" name="user_photo">
-                            </td>
-                        </tr>
                         <tr>
                             <td>
-                                 UserName
+                                * UserName
                             </td>   
                             <td>
                                 <input type="text" name="username">
@@ -42,7 +34,7 @@
                         </tr>
                         <tr>
                             <td>
-                                 New Password
+                                * New Password
                             </td>
                             <td>
                                 <input type="password" name="password">
@@ -50,7 +42,7 @@
                         </tr>
                         <tr>
                             <td>
-                                 Reenter Password
+                                * Reenter Password
                             </td>
                             <td>
                                 <input type="password" name="repassword">
@@ -58,7 +50,7 @@
                         </tr>
                         <tr>
                             <td>
-                                 EMAIL
+                                * EMAIL
                             </td>
                             <td>
                                 <input type="email" name="email">
@@ -66,7 +58,7 @@
                         </tr>
                         <tr>
                             <td>
-                                Contact
+                                *Contact
                             </td>
                             <td>
                                 <input type="text" name="contact">
@@ -74,7 +66,7 @@
                         </tr>
                         <tr>
                             <td>
-                                Gender
+                                *Gender
                             </td>
                             <td>
                                     <input type="radio" name="gender" value="male">MALE
@@ -83,47 +75,12 @@
                         </tr>
                         <tr>
                             <td>
-                                BIRTHDAY
+                                *BIRTHDAY
                             </td>
                             <td>
                                 <input type="date" name="dob">
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                Address
-                            </td>
-                            <td>
-                                <input type="text" name="user_addr">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                City
-                            </td>
-                            <td>
-                                <input type="text" name="user_city">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                   Pincode
-                            </td>
-                            <td>
-                                <input type="text" name="user_pincode">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                   state
-                            </td>
-                            <td>
-                                <input type="text" name="user_state">
-                            </td>
-                        </tr>
-                      
-                       
-
                     </table>
 
                                 <div class="col-md-12"style="text-align:center">
