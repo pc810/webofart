@@ -6,4 +6,5 @@
  * and open the template in the editor.
  */
 echo 'hi';
+echo 'hello';
 ?>
