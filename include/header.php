@@ -16,7 +16,7 @@
               
         if(session_status() == PHP_SESSION_NONE)
         {
-                          session_start();
+                session_start();
                 if(isset($_SESSION["username"]))
                 {
                     $flag = 0;
@@ -39,9 +39,10 @@
                 {
                     echo "&nbsp;";
                 }
+                
                  echo '<ul class="nav navbar-right">
                             <li class="nav-item">
-                                <a class="nav-link" href="/webofart/index.php">signed in as '.$_SESSION["username"].'</a>
+                                <a class="nav-link" href="/webofart/user/userprofile/userprofile.php">signed in as '.$_SESSION["username"].'</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link btn btn-danger" href="/webofart/validate/signout.php">SignOut</a>
@@ -50,6 +51,7 @@
             }
             else
             {
+                
                 for($i=0;$i<(185);$i++)
                 {
                     echo "&nbsp;";

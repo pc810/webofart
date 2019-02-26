@@ -1,7 +1,18 @@
 <!-- include this file for user identity -->
 
 <?php
-
-    session_start();
-?>
-
+    echo 'hi';
+    if(session_status() == PHP_SESSION_NONE)
+        {
+                session_start();
+                if(isset($_SESSION["username"]))
+                {
+                    $flag = 0;
+                }
+                else
+                {
+                   $flag = 1;
+                }
+                echo $flag;
+          }
+          ?>
