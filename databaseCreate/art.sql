@@ -1,0 +1,9 @@
+INSERT INTO `webofart`.`art` (`art_id`, `username`, `art_title`, `art_medium`, `art_width`, `art_height`, `art_loc`, `art_about`, `art_price`, `art_genre`, `art_posted`, `art_created_date`) VALUES ('2', 'smp1613s', 'image1', 'oil', '500', '500', 'max-van-den-oetelaar-1150510-unsplash.jpg', 'good one', '300000', 'oil', '2019-02-21 11:11:08', '2019-02-20');
+
+INSERT INTO `webofart`.`art` (`art_id`, `username`, `art_title`, `art_medium`, `art_width`, `art_height`, `art_loc`, `art_about`, `art_price`, `art_genre`, `art_posted`, `art_created_date`) VALUES ('3', 'smp1613s', 'image2', 'oil', '500', '500', 'anna-sullivan-518434-unsplash.jpg', 'good one', '110000', 'oil', '2019-02-21 11:11:08', '2019-02-20');
+
+INSERT INTO `webofart`.`art` (`art_id`, `username`, `art_title`, `art_medium`, `art_width`, `art_height`, `art_loc`, `art_about`, `art_price`, `art_genre`, `art_posted`, `art_created_date`) VALUES ('4', 'smp1613s', 'image3', 'oil', '500', '500', 'clodagh-da-paixao-683851-unsplash.jpg', 'good one', '301000', 'oil', '2019-02-21 11:11:08', '2019-02-20');
+
+INSERT INTO `webofart`.`art` (`art_id`, `username`, `art_title`, `art_medium`, `art_width`, `art_height`, `art_loc`, `art_about`, `art_price`, `art_genre`, `art_posted`, `art_created_date`) VALUES ('5', 'smp1613s', 'image3', 'oil', '500', '500', 'federica-campanaro-27450-unsplash.jpg', 'good one', '130000', 'oil', '2019-02-21 11:11:08', '2019-02-20');
+
+INSERT INTO `webofart`.`art` (`art_id`, `username`, `art_title`, `art_medium`, `art_width`, `art_height`, `art_loc`, `art_about`, `art_price`, `art_genre`, `art_posted`, `art_created_date`) VALUES ('6', 'smp1613s', 'image3', 'oil', '500', '500', 'steve-johnson-1266861-unsplash.jpg', 'good one', '3110000', 'oil', '2019-02-21 11:11:08', '2019-02-20');

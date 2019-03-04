@@ -3,7 +3,6 @@
      
             $path = $_SERVER['DOCUMENT_ROOT'];
             $path .= "/webofart/include/dbcon.php";
-<<<<<<< HEAD
         
             include_once($path);
         $path = $_SERVER['DOCUMENT_ROOT'];
@@ -12,16 +11,6 @@
  
     $art_id=$_GET["artid"];
     echo $_GET["artid"];
-=======
-            include_once($path);
-            $path .= "/webofart/include/session.php";
-            include($path);
-            
-?>
-<?php
-    $art_id=$_GET[artid];
-    echo $_GET[artid];
->>>>>>> 21c4b4e5dfd3456960f772506a50323692a74e03
     echo 'hello';
    $sql = "select * from art WHERE art_id='$art_id'";
    $query = $dbhandler->query($sql);
@@ -192,7 +181,6 @@ include_once($path);
                 <div class="col-md-4">
                     <div class="profile-img">
 <?php
-<<<<<<< HEAD
 //$path = "/webofart/image/profile/".$art_loc;
 $path = "/webofart/image/userart/anna-sullivan-518434-unsplash.jpg";
 $path = "/webofart/image/userart/".$art_loc;
@@ -200,10 +188,6 @@ $path = "/webofart/image/userart/".$art_loc;
 //$path = "../../image/userart/".$art_loc;
 //$path = "../".$art_loc;
 //echo $path;
-=======
-$path = "/webofart/image/userart/".$art_loc;
-echo $path;
->>>>>>> 21c4b4e5dfd3456960f772506a50323692a74e03
 ?>
 
                         <img src="<?php echo htmlspecialchars($path); ?>" alt="test" />
