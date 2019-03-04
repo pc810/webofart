@@ -41,7 +41,7 @@
                                    if(!empty($_FILES["user_photo"]["name"]))
                                    {
                                         $target_location="../image/profile/".basename($_FILES["user_photo"]["name"]);
-                
+                                        $target_location=basename($_FILES["user_photo"]["name"]);
                                         if(! (move_uploaded_file($_FILES["user_photo"]["tmp_name"], $target_location)))
                                                 echo "Error: " . $_FILES["user_photo"]["error"] . "<br>";
                                         else
@@ -65,6 +65,8 @@
                                             
                                         }
                                     }
+                                    //$new=basename($_FILES["user_photo"]["name"]);
+                                    $new = $_POST["username"].".".$ext;
                                     $stmt->bindParam(":user_photo",$new);
                                
                                    

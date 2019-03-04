@@ -3,48 +3,42 @@
         
     </head>
     <body>
-        <?php $path = $_SERVER["DOCUMENT_ROOT"];
+        <?php   $path = $_SERVER["DOCUMENT_ROOT"];
                 $path.="/webofart/include/header.php";
                 include_once($path);
+                
+                $path = $_SERVER["DOCUMENT_ROOT"];
+                $path.="/webofart/include/dbcon.php";
+                include_once($path);
+                
+                $sql = "select username,art_title,art_medium,art_price from art";
+                
+                $stmt = $dbhandler->prepare($sql);
+                $stmt->execute();
+                $rs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+               
+                foreach ($rs as $row) 
+                {
+                    print_r($row);
+                    echo "<br>";
+                }
+                
         ?>
-        <div class="container-fluid">
-           
-            <div class="container bg-primary">
-                    <br>
-                    <div class="jumbotron">
-                        <h1 class="text-uppercase text-center"><font class="bg-primary">Hello There</font></h1>
-                        <p class="text-center text-primary">
-                            This Is buy art Page.
+        <div class="container">
+            <div class="card-columns">
+                <div class="card">
+                    <img class="card-img-top" src="../image/login_successful.png" alt="yo">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Title
+                        </h5>
+                        <p class="card-text">
+                            hello
                         </p>
                     </div>
-                <br>
-            </div>
-        <div class="container">
-                &nbsp;
-                <div class="row">
-                      &nbsp;  &nbsp;   &nbsp;
-                    <div class="card col-md-3 bg-info">
-                        <div class="card-header bg-danger">Head</div>
-                        <div class="card-body">Basic card</div>
-                        <div class="card-footer bg-primary">Dead</div>
-                    </div>
-                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                    <div class="card col-md-3 bg-info">
-                        <div class="card-header bg-danger">Head</div>
-                        <div class="card-body">Basic card</div>
-                        <div class="card-footer bg-primary">Dead</div>
-                    </div>
-                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    
-                    &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                    <div class="card col-md-3 bg-info">
-                        <div class="card-header bg-danger">Head</div>
-                        <div class="card-body">Basic card</div>
-                        <div class="card-footer bg-primary">Dead</div>
-                    </div>
                 </div>
-            </div>    
+            </div>
+            
         </div>
         <?php $path = $_SERVER["DOCUMENT_ROOT"];
                 $path.="/webofart/include/lessfooter.php";

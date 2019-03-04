@@ -1,7 +1,13 @@
 <html>
-    <head>
+    <head></head>
     <body>
-        <?php $path = $_SERVER['DOCUMENT_ROOT'];
+        
+        <?php 
+        $path = $_SERVER['DOCUMENT_ROOT'];
+        $path .= "/webofart/include/dbcon.php";
+        include($path);
+        
+        $path = $_SERVER['DOCUMENT_ROOT'];
             $path .= "/webofart/include/header.php";
             include_once($path);       
             $flag = 0;
@@ -27,7 +33,8 @@
                     try
                     {
                       //  echo "<br>inside try ";
-                        $dbhandler = new PDO('mysql:host=127.0.0.1;dbname=webofart','root','');
+                     ?>          
+        <?php
                   //        $dbhandler = new PDO('mysql:host=192.168.29.150;dbname=ce119','ce119','ce119');	//192.168.29.150 ce119 ce119 ce119
 
                         $sql = "select * from user where username=:name and password=:pass";
@@ -41,9 +48,10 @@
                            //     session_start();
          
                              // setcookie("id", $_POST['name'],time()+60*60*2);
+                                
                                $_SESSION['username']=$_POST['username'];
                                $flag=1;
-                               header("Location: ../index.php");
+                               header("Location: /webofart/user/userprofile/userprofile.php");
                              
                         }
                         else
@@ -80,7 +88,7 @@
                     try
                     {
                       //  echo "<br>inside try ";
-                        $dbhandler = new PDO('mysql:host=127.0.0.1;dbname=webofart','root','');
+                        
                   //        $dbhandler = new PDO('mysql:host=192.168.29.150;dbname=ce119','ce119','ce119');	//192.168.29.150 ce119 ce119 ce119
 
                         $sql = "select * from user where username=:name and password=:pass";
@@ -127,5 +135,5 @@
             include_once($path);       
         ?>
     </body>        
-    </head>    
+    
 </html>
