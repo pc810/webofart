@@ -4,6 +4,17 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<<<<<<< HEAD
+=======
+<?php 
+     
+            $path = $_SERVER['DOCUMENT_ROOT'];
+            
+            $path .= "/webofart/include/session.php";
+            include_once($path);
+            
+?>
+>>>>>>> 21c4b4e5dfd3456960f772506a50323692a74e03
 
 <html>
     <head>

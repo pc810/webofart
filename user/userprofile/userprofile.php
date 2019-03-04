@@ -2,13 +2,20 @@
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= "/webofart/include/dbcon.php";
 include($path);
+<<<<<<< HEAD
 /* $path .= "/webofart/include/session.php";
   include($path);
  */
+=======
+$path .= "/webofart/include/session.php";
+include($path);
+
+>>>>>>> 21c4b4e5dfd3456960f772506a50323692a74e03
 ?>
 
 
 <?php
+<<<<<<< HEAD
 try {
     session_start();
 //$_SESSION['username']="smp1613s";
@@ -53,6 +60,57 @@ try {
 } catch (PDOException $e) {
     echo $e->getMessage();
     die();
+=======
+try{
+
+$_SESSION['username']="smp1613s";
+$username = $_SESSION["username"];
+echo $username;
+$sql = "SELECT * FROM user WHERE username='$username'";
+$query = $dbhandler->query($sql);
+
+
+while ($r = $query->fetch(PDO::FETCH_ASSOC)) {
+foreach ($r as $key => $value) {
+//echo $key.' ';
+switch ($key) {
+
+case "user_photo":
+$user_photo = $value;
+break;
+case "name":
+$name = $value;
+break;
+case "email":
+$email = $value;
+break;
+case "user_city":
+$user_city = $value;
+break;
+case "user_state":
+$user_state = $value;
+break;
+case "contact":
+$contact = $value;
+break;
+default:
+echo '';
+
+}
+
+
+
+}
+//echo $name;
+//echo $username;
+echo $user_photo;
+}
+
+
+} catch (PDOException $e) {
+echo $e->getMessage();
+die();
+>>>>>>> 21c4b4e5dfd3456960f772506a50323692a74e03
 }
 ?>
 <html lang="en">
@@ -166,22 +224,37 @@ try {
     </head>
     <!------ Include the above in your HEAD tag ---------->
     <body>
+<<<<<<< HEAD
         <?php
         $path = $_SERVER['DOCUMENT_ROOT'];
         $path .= "/webofart/include/header.php";
         include_once($path);
         ?>
+=======
+<?php
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= "/webofart/include/header.php";
+include_once($path);
+?>
+>>>>>>> 21c4b4e5dfd3456960f772506a50323692a74e03
         <div class="container emp-profile">
 
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-img">
+<<<<<<< HEAD
                         <?php
                         $path = "../../image/profile/".$user_photo;
                         //$path = "../../image/profile/".$_SESSION["usern"];
                         //$path = "../image/profile/" . $user_photo;
 //echo $path;           
                         ?>
+=======
+<?php
+$path = "/webofart/image/".$user_photo;
+echo $path;
+?>
+>>>>>>> 21c4b4e5dfd3456960f772506a50323692a74e03
 
                         <img src="<?php echo htmlspecialchars($path); ?>" alt="test" />
 
@@ -196,7 +269,11 @@ try {
                 <div class="col-md-6">
                     <div class="profile-head">
                         <h5>
+<<<<<<< HEAD
                             <?php echo $name; ?>
+=======
+<?php echo $name; ?>
+>>>>>>> 21c4b4e5dfd3456960f772506a50323692a74e03
                         </h5>
                         <h6>
                             Artist
@@ -290,6 +367,7 @@ try {
                                 <div class="row">
 
 
+<<<<<<< HEAD
                                     <?php
                                     $sql = "SELECT art_id,art_title,art_loc FROM art WHERE username='$username'";
                                     $query = $dbhandler->query($sql);
@@ -333,6 +411,53 @@ try {
                                         <?php
                                     }
                                     ?>
+=======
+<?php
+$sql = "SELECT art_id,art_title,art_loc FROM art WHERE username='$username'";
+$query = $dbhandler->query($sql);
+//echo $query->rowCount();
+while ($r = $query->fetch(PDO::FETCH_ASSOC)) {
+foreach ($r as $key => $value) {
+//echo $key.' ';
+
+   
+    switch ($key) {
+
+case "art_id":
+$art_id = $value;
+break;
+case "art_title":
+$art_title = $value;
+break;
+case "art_loc":
+$art_loc = $value;
+break;
+default:
+echo '';
+
+}
+
+$path = "/webofart/image/userart/".$art_loc;
+$arts="/webofart/user/userprofile/art.php?artid=".$art_id;
+}
+
+?>
+                                    
+                                    <div class="col-md-4">
+                                        <div class="img-thumbnail">
+                                            <a href="<?php echo htmlspecialchars($arts); ?>" target="_blank">
+                                                <img src="<?php echo htmlspecialchars($path); ?>" alt="<?php echo htmlspecialchars($art_title); ?>" style="width:100%" height="200">
+                                                <div class="caption">
+                                                    <p><?php echo htmlspecialchars($art_title); ?></p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+<?php
+}
+
+?>
+>>>>>>> 21c4b4e5dfd3456960f772506a50323692a74e03
                                 </div>
                             </div>
                             <div class="row">
