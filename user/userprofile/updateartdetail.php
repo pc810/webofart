@@ -1,58 +1,89 @@
+
 <?php
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= "/webofart/include/dbcon.php";
+
+include_once($path);
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= "/webofart/include/session.php";
 include($path);
-/* $path .= "/webofart/include/session.php";
-  include($path);
- */
 ?>
 
-
 <?php
-try {
-    session_start();
-//$_SESSION['username']="smp1613s";
-    //   $_SESSION['username']="pc8101234";
-    $username = $_SESSION["username"];
-//  echo $username;
-    $sql = "SELECT * FROM user WHERE username='$username'";
-    $query = $dbhandler->query($sql);
+$art_id = $_SESSION['artid'];
+
+if(isset($_POST['submit']))
+    {
+        echo '000';
+        echo $art_id;
+        $title=$_POST['title'];
+        $about=$_POST['about'];
+        $creationdate=$_POST['creationdate'];
+        $price=$_POST['price'];
+        $width=$_POST['width'];
+        $height=$_POST['height'];
+        $status=$_POST['status'];
+        
+        
+        
+       
+            $sql="update art set art_title='$title',art_about='$about',art_created_date='$creationdate',art_price='$price',art_width='$width',art_height='$height',art_status='$status' where art_id='$art_id'";
+            //$sql="update user set name=?,email=?,contact=?,user_city=?,user_state=? where username='$username'";
+            echo '002';
+            $query = $dbhandler->query($sql);
+            //$query->execute(array($name,$email,$contact,$city,$state));
+            echo '003';
+            header('Location: art.php');
+    }      
+?>
+<?php
+$art_id = $_SESSION['artid'];
+echo $_GET["artid"];
+echo 'hello';
+$sql = "select * from art WHERE art_id='$art_id'";
+$query = $dbhandler->query($sql);
+echo $query->rowCount();
 
 
-    while ($r = $query->fetch(PDO::FETCH_ASSOC)) {
-        foreach ($r as $key => $value) {
+while ($r = $query->fetch(PDO::FETCH_ASSOC)) {
+    foreach ($r as $key => $value) {
 //echo $key.' ';
-            switch ($key) {
+        switch ($key) {
 
-                case "user_photo":
-                    $user_photo = $value;
-                    break;
-                case "name":
-                    $name = $value;
-                    break;
-                case "email":
-                    $email = $value;
-                    break;
-                case "user_city":
-                    $user_city = $value;
-                    break;
-                case "user_state":
-                    $user_state = $value;
-                    break;
-                case "contact":
-                    $contact = $value;
-                    break;
-                default:
-                    echo '';
-            }
+
+
+            case "art_title":
+                $art_title = $value;
+                break;
+            case "art_medium":
+                $art_medium = $value;
+                break;
+            case "art_about":
+                $art_about = $value;
+                break;
+            case "art_created_date":
+                $art_created_date = $value;
+                break;
+            case "art_price":
+                $art_price = $value;
+                break;
+            case "art_width":
+                $art_width = $value;
+                break;
+            case "art_height":
+                $art_height = $value;
+                break;
+            case "art_loc":
+                $art_loc = $value;
+                break;
+            case "art_status":
+                $art_status = $value;
+                break;
+            default:
+                echo '';
         }
-//echo $name;
-//echo $username;
-//echo $user_photo;
     }
-} catch (PDOException $e) {
-    echo $e->getMessage();
-    die();
+    echo $art_price;
 }
 ?>
 <html lang="en">
@@ -80,7 +111,7 @@ try {
             .profile-img img{
                 width: 70%;
                 height: 40%;
-                border-radius: 50%;
+                border-radius: 0%;
             }
             .profile-img .file {
                 position: relative;
@@ -166,49 +197,44 @@ try {
     </head>
     <!------ Include the above in your HEAD tag ---------->
     <body>
-        <?php
-        $path = $_SERVER['DOCUMENT_ROOT'];
-        $path .= "/webofart/include/header.php";
-        include_once($path);
-        ?>
+
+<?php
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= "/webofart/include/header.php";
+include_once($path);
+?>
         <div class="container emp-profile">
 
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-img">
-                        <?php
-                        $path = "../../image/profile/".$user_photo;
-                        //$path = "../../image/profile/".$_SESSION["usern"];
-                        //$path = "../image/profile/" . $user_photo;
-//echo $path;           
-                        ?>
+<?php
+//$path = "/webofart/image/profile/".$art_loc;
+$path = "/webofart/image/userart/anna-sullivan-518434-unsplash.jpg";
+$path = "/webofart/image/userart/" . $art_loc;
+
+//$path = "../../image/userart/".$art_loc;
+//$path = "../".$art_loc;
+//echo $path;
+?>
 
                         <img src="<?php echo htmlspecialchars($path); ?>" alt="test" />
 
-                        <div class="file btn btn-lg btn-primary">
-                            Change Photo
-                            <form action="/webofart/user/userprofile/changephoto.php" method="post" enctype="multipart/form-data" >
-                                <input type="file" name="file" onchange="this.form.submit()"/>
-                            </form>
-                        </div>
+
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="profile-head">
                         <h5>
-                            <?php echo $name; ?>
+<?php echo $art_title; ?>
                         </h5>
-                        <h6>
-                            Artist
-                        </h6>
-                        <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+
+
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">MY ARTS</a>
-                            </li>
+
                         </ul>
                     </div>
                 </div>
@@ -219,11 +245,10 @@ try {
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-work">
-                        <p>WORK LINK</p>
-                        <a href="/webofart/user/userprofile/editprofile.php">Update Profile</a><br/>
-
                         <p></p>
-                        <a href="/webofart/user/userprofile/deleteaccount.php">Delete Account</a><br/>
+
+                        <a href="/webofart/user/userprofile/userprofile.php">My Profile</a><br/>
+
                         <a href="/webofart/validate/signout.php">Sign out</a><br/>
 
 
@@ -232,120 +257,77 @@ try {
                 <div class="col-md-8">
                     <div class="tab-content profile-tab" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>Username</label>
+                                    <label>Title</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p><?php echo $username; ?></p>
+                                    <p><input type="text" name="title" value="<?php echo $art_title; ?>"/></p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>Name</label>
+                                    <label>About</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p><?php echo $name; ?></p>
+                                    <p><textarea rows="4" cols="40" name="about" required="required" autofocus><?php echo $art_about; ?>
+                                        </textarea></p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>Email</label>
+                                    <label>Creation date</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p><?php echo $email; ?></p>
+                                    <p><input type="text" name="creationdate" value="<?php echo $art_created_date; ?>"/></p>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Phone</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p><?php echo $contact; ?></p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>City</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p><?php echo $user_city; ?></p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>State</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p><?php echo $user_state; ?></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                            <div class="container">
-                                <h2>Image Gallery</h2>
-                                <p></p>
-                                <p></p>
-                                <p></p>
-                                <div class="row">
 
-
-                                    <?php
-                                    $sql = "SELECT art_id,art_title,art_loc FROM art WHERE username='$username'";
-                                    $query = $dbhandler->query($sql);
-//echo $query->rowCount();
-                                    while ($r = $query->fetch(PDO::FETCH_ASSOC)) {
-                                        foreach ($r as $key => $value) {
-//echo $key.' ';
-
-                                            $art_loc = "";
-                                            switch ($key) {
-
-                                                case "art_id":
-                                                    $art_id = $value;
-                                                    break;
-                                                case "art_title":
-                                                    $art_title = $value;
-                                                    break;
-                                                case "art_loc":
-                                                    $art_loc = $value;
-                                                    break;
-                                                default:
-                                                    echo '';
-                                            }
-
-                                           $path = "/webofart/image/userart/" . $art_loc;
-                                          //  $path = "../" . $art_loc;
-                                            $arts = "/webofart/user/userprofile/art.php?artid=" . $art_id;
-                                        }
-                                        ?>
-
-                                        <div class="col-md-4">
-                                            <div class="img-thumbnail">
-                                                <a href="<?php echo htmlspecialchars($arts); ?>" target="_blank">
-                                                    <img src="<?php echo htmlspecialchars($path); ?>" alt="<?php echo htmlspecialchars($art_title); ?>" style="width:100%" height="200">
-                                                    <div class="caption">
-                                                        <p><?php echo htmlspecialchars($art_title); ?></p>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <?php
-                                    }
-                                    ?>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Height</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><input type="text" name="height" value="<?php echo $art_height; ?>"/></p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
-                                    <label></label><br/>
-                                    <p></p>
+                                <div class="col-md-6">
+                                    <label>Width</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><input type="text" name="width" value="<?php echo $art_width; ?>"/></p>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Price</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><input type="text" name="price" value="<?php echo $art_price; ?>"/></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Status</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><select name="status">
+                                            <option value="available" selected="Selected">Available</option>
+                                            <option value="sold">Sold</option>
+                                        </select></p>
+                                </div>
+                            </div>
+                                <div class='btn'>
+                                   <input type="submit" name="submit" value="Update"/>
+                               </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </body>
 </html>
+

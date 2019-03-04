@@ -9,7 +9,13 @@
             $path .= "/webofart/include/session.php";
             include($path);
  
+            
     $art_id=$_GET["artid"];
+    if(!isset($_SESSION['artid'])){
+    $_SESSION['artid']=$art_id;}
+    else{
+        $art_id=$_SESSION['artid'];
+    }
     echo $_GET["artid"];
     echo 'hello';
    $sql = "select * from art WHERE art_id='$art_id'";
@@ -47,6 +53,9 @@ $art_height = $value;
 break;
 case "art_loc":
 $art_loc = $value;
+break;
+case "art_status":
+$art_status=$value;
 break;
 default:
 echo '';
@@ -219,8 +228,10 @@ $path = "/webofart/image/userart/".$art_loc;
                     <div class="profile-work">
                         <p></p>
                         
+                        <a href="/webofart/user/userprofile/userprofile.php">My Profile</a><br/>
+                        <a href="/webofart/user/userprofile/updateartdetail.php">Update Art Details</a><br/>
                         <a href="/webofart/validate/signout.php">Sign out</a><br/>
-
+                        
 
                     </div>
                 </div>
@@ -274,6 +285,14 @@ $path = "/webofart/image/userart/".$art_loc;
                                 </div>
                                 <div class="col-md-6">
                                     <p>₹<?php echo $art_price; ?></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Status</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><?php echo $art_status; ?></p>
                                 </div>
                             </div>
                         </div>
