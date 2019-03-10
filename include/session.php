@@ -1,7 +1,6 @@
 <!-- include this file for user identity -->
 
 <?php
-    echo 'hi';
     if(session_status() == PHP_SESSION_NONE)
         {
                 session_start();
@@ -13,6 +12,5 @@
                 {
                    $flag = 1;
                 }
-                echo $flag;
           }
           ?>
