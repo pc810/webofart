@@ -1,3 +1,11 @@
+<?php 
+     
+            $path = $_SERVER['DOCUMENT_ROOT'];
+            $path .= "/webofart/include/dbcon.php";
+            include_once($path);
+        
+           
+ ?>
 <html>
     <body>
         <?php
@@ -19,8 +27,7 @@
                                 {
                                     session_start();
                                 }
-                                $dbhandler = new PDO('mysql:host=127.0.0.1;dbname=webofart','root','');	//192.168.29.150 ce119 ce119 ce119
-                                //   $dbhandler = new PDO('mysql:host=192.168.29.150;dbname=ce119','ce119','ce119');	//192.168.29.150 ce119 ce119 ce119
+                                
                                     $dbhandler->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
                                     //$sql="insert into profile(name,password,gender,dob,training,placement,achivement,posted) values(priyank,1234567,male,now(),interested,notinterested,123,now()";
                             
@@ -71,6 +78,10 @@
                                
                                    
                                    $stmt->execute();
+                                   //echo '-1-2-3';
+                                   $username=$_POST['username'];
+                                        $sql="insert into cart(username) values('$username')";
+                                   $query = $dbhandler->query($sql);
                                  
                                    /*  $sql = "select * from user";
                                      $stmt = $dbhandler->prepare($sql);

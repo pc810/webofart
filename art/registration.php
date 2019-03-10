@@ -39,7 +39,12 @@
                                     Genre
                                 </td>
                                 <td>
-                                    <input type="text" name="art_genre">
+                                    <select name="art_genre">
+    <option value="nature">Nature</option>
+    <option value="bodyart">Body Art</option>
+    <option value="abstract">Abstract</option>
+    <option value="history">History</option>
+  </select>
                                 </td>
                             </tr>
                             <tr>

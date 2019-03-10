@@ -5,18 +5,19 @@
             $path .= "/webofart/include/dbcon.php";
         
             include_once($path);
-        $path = $_SERVER['DOCUMENT_ROOT'];
+            $path = $_SERVER['DOCUMENT_ROOT'];
             $path .= "/webofart/include/session.php";
             include($path);
- 
-            
-    $art_id=$_GET["artid"];
+ ?>
+<?php
+    unset($_SESSION['artid']);
+    $art_id=$_GET['artid'];
     if(!isset($_SESSION['artid'])){
     $_SESSION['artid']=$art_id;}
     else{
         $art_id=$_SESSION['artid'];
     }
-    echo $_GET["artid"];
+    echo $art_id;
     echo 'hello';
    $sql = "select * from art WHERE art_id='$art_id'";
    $query = $dbhandler->query($sql);
@@ -57,6 +58,9 @@ break;
 case "art_status":
 $art_status=$value;
 break;
+case "username":
+    $art_creater=$value;
+    break;
 default:
 echo '';
 
@@ -64,8 +68,9 @@ echo '';
 }
 }
 echo $art_price;
+echo $art;
 }
-
+unset($_SESSION['artid']);
 ?>
 <html lang="en">
     <head>
@@ -229,7 +234,11 @@ $path = "/webofart/image/userart/".$art_loc;
                         <p></p>
                         
                         <a href="/webofart/user/userprofile/userprofile.php">My Profile</a><br/>
+                        <?php
+                        $_SESSION['artid']=$art_id;
+                        if($_SESSION['username']==$art_creater){ ?>
                         <a href="/webofart/user/userprofile/updateartdetail.php">Update Art Details</a><br/>
+                        <?php } ?>
                         <a href="/webofart/validate/signout.php">Sign out</a><br/>
                         
 
@@ -287,14 +296,14 @@ $path = "/webofart/image/userart/".$art_loc;
                                     <p>₹<?php echo $art_price; ?></p>
                                 </div>
                             </div>
-                            <div class="row">
+<!--                            <div class="row">
                                 <div class="col-md-6">
                                     <label>Status</label>
                                 </div>
                                 <div class="col-md-6">
                                     <p><?php echo $art_status; ?></p>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>
