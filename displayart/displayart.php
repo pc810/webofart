@@ -9,9 +9,12 @@ $path .= "/webofart/include/session.php";
 include($path);
 ?>
 <?php
+echo '1';
 if (isset($_GET['genre'])) {
     $na = $bo = $hi = $all = $ab = "";
     $genre = $_GET['genre'];
+} else {
+$genre="all";    
 }
 switch ($genre) {
 
@@ -56,6 +59,8 @@ if (isset($_GET['page'])) {
             echo '';
             ;
     }
+} else {
+ $page=1;   
 }
 ?>
 <html lang="en">

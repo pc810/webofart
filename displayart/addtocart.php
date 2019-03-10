@@ -32,11 +32,17 @@ while ($r = $query->fetch(PDO::FETCH_ASSOC)) {
 
 }
 echo $cart_id;
-
+try{
 $sql12="insert into cart_content(cart_id,art_id) values('$cart_id','$art_id')";
 //echo '--';
+
 $query = $dbhandler->query($sql12);
-echo '3';
+}
+ catch (PDOException $e)
+ {
+     header('Location: displayart.php');
+ }
+
 
 header('Location: displayart.php');
 
