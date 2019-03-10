@@ -1,3 +1,4 @@
+
 <?php
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= "/webofart/include/dbcon.php";
@@ -5,6 +6,53 @@ include($path);
 /* $path .= "/webofart/include/session.php";
   include($path);
  */
+?>
+
+<?php
+        
+        session_start();
+//$_SESSION['username']="smp1613s";
+    //   $_SESSION['username']="pc8101234";
+    $username = $_SESSION["username"];
+        $flag=1;
+        $emailerr=NULL;
+        $contacterr=NULL;
+    if(isset($_POST['submit']))
+    {
+        echo '000';
+        $name=$_POST['name'];
+        $email=$_POST['email'];
+        $contact=$_POST['contact'];
+        $city=$_POST['city'];
+        $state=$_POST['state'];
+        $regemail="/[a-zA-Z]\w+@(\w{2,8})\.(com|in)/";
+        $regcontact="/(\+91){0,1}\d{10}/";
+        
+        if(!preg_match($regemail,$email ))
+        {
+            echo '000';
+            $flag=0;
+            $emailerr="invalid email";
+        }
+        if(!preg_match($regcontact, $contact))
+        {
+            echo '000';
+            $flag=0;
+            $contacterr="invalid contect";
+        }
+        
+        if($flag==1)
+        {
+            echo '001';
+            $sql="update user set name='$name',email='$email',contact='$contact',user_city='$city',user_state='$state' where username='$username'";
+            //$sql="update user set name=?,email=?,contact=?,user_city=?,user_state=? where username='$username'";
+            echo '002';
+            $query = $dbhandler->query($sql);
+            //$query->execute(array($name,$email,$contact,$city,$state));
+            echo '003';
+            header('Location: userprofile.php');
+        }
+    }
 ?>
 
 
@@ -204,11 +252,9 @@ try {
                         <p class="proile-rating">RANKINGS : <span>8/10</span></p>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Edit Profile</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">MY ARTS</a>
-                            </li>
+                            
                         </ul>
                     </div>
                 </div>
@@ -220,32 +266,34 @@ try {
                 <div class="col-md-4">
                     <div class="profile-work">
                         <p>WORK LINK</p>
-                        <a href="/webofart/user/userprofile/editprofile.php">Update Profile</a><br/>
 
-                        <p></p>
                         <a href="/webofart/user/userprofile/deleteaccount.php">Delete Account</a><br/>
                         <a href="/webofart/validate/signout.php">Sign out</a><br/>
 
 
                     </div>
                 </div>
+                
                 <div class="col-md-8">
                     <div class="tab-content profile-tab" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Username</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <p><?php echo $username; ?></p>
-                                </div>
+                            <?php if($emailerr!=NULL){?>
+                            <div class="col-md-6">
+                                    <label>*INVALID EMAIL</label>
                             </div>
+                            <?php }?>
+                            <?php if($contacterr!=NULL){?>
+                            <div class="col-md-6">
+                                    <label>*INVALID CONTACT</label>
+                            </div>
+                            <?php }?>
+                            <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
                             <div class="row">
                                 <div class="col-md-6">
                                     <label>Name</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p><?php echo $name; ?></p>
+                                    <p><input type="text" name="name" value="<?php echo $name;?>"/></p>
                                 </div>
                             </div>
                             <div class="row">
@@ -253,15 +301,15 @@ try {
                                     <label>Email</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p><?php echo $email; ?></p>
+                                    <p><input type="text" name="email" value="<?php echo $email;?>"/></p>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label>Phone</label>
+                                    <label>Contact</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p><?php echo $contact; ?></p>
+                                    <p><input type="text" name="contact" value="<?php echo $contact;?>"/></p>
                                 </div>
                             </div>
                             <div class="row">
@@ -269,7 +317,7 @@ try {
                                     <label>City</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p><?php echo $user_city; ?></p>
+                                    <p><input type="text" name="city" value="<?php echo $user_city;?>"/></p>
                                 </div>
                             </div>
                             <div class="row">
@@ -277,71 +325,18 @@ try {
                                     <label>State</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p><?php echo $user_state; ?></p>
+                                    <p><input type="text" name="state" value="<?php echo $user_state;?>"/></p>
                                 </div>
-                            </div>
+                            </div>  
+                               <div class='btn'>
+                                   <input type="submit" name="submit" value="Update"/>
+                               </div>
+                                
+                            </form>
+                            
                         </div>
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                            <div class="container">
-                                <h2>Image Gallery</h2>
-                                <p></p>
-                                <p></p>
-                                <p></p>
-                                <div class="row">
-
-
-                                    <?php
-                                    $sql = "SELECT art_id,art_title,art_loc FROM art WHERE username='$username'";
-                                    $query = $dbhandler->query($sql);
-//echo $query->rowCount();
-                                    while ($r = $query->fetch(PDO::FETCH_ASSOC)) {
-                                        foreach ($r as $key => $value) {
-//echo $key.' ';
-
-                                            $art_loc = "";
-                                            switch ($key) {
-
-                                                case "art_id":
-                                                    $art_id = $value;
-                                                    break;
-                                                case "art_title":
-                                                    $art_title = $value;
-                                                    break;
-                                                case "art_loc":
-                                                    $art_loc = $value;
-                                                    break;
-                                                default:
-                                                    echo '';
-                                            }
-
-                                           $path = "/webofart/image/userart/" . $art_loc;
-                                          //  $path = "../" . $art_loc;
-                                            $arts = "/webofart/user/userprofile/art.php?artid=" . $art_id;
-                                        }
-                                        ?>
-
-                                        <div class="col-md-4">
-                                            <div class="img-thumbnail">
-                                                <a href="<?php echo htmlspecialchars($arts); ?>" target="_blank">
-                                                    <img src="<?php echo htmlspecialchars($path); ?>" alt="<?php echo htmlspecialchars($art_title); ?>" style="width:100%" height="200">
-                                                    <div class="caption">
-                                                        <p><?php echo htmlspecialchars($art_title); ?></p>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <?php
-                                    }
-                                    ?>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label></label><br/>
-                                    <p></p>
-                                </div>
-                            </div>
-                        </div>
+                        
+                      
                     </div>
                 </div>
             </div>
