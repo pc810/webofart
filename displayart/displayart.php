@@ -9,7 +9,7 @@ $path .= "/webofart/include/session.php";
 include($path);
 ?>
 <?php
-echo '1';
+//echo '1';
 if (isset($_GET['genre'])) {
     $na = $bo = $hi = $all = $ab = "";
     $genre = $_GET['genre'];
@@ -89,7 +89,7 @@ if (isset($_GET['page'])) {
     <body>
 
         <!--================Header Menu Area =================-->
-        <header class="header_area">
+            
 <?php
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= "/webofart/include/header.php";
@@ -98,7 +98,7 @@ include($path);
             <div class="top_menu row m0">
             </div>
 
-        </header>
+        
         <!--================Header Menu Area =================-->
 
         <!--================Home Banner Area =================-->

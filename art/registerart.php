@@ -13,7 +13,7 @@ include($path);
      $dbhandler->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
             include_once $path;
             try {
-                if(isset( $_POST["art_created_date"]))
+                if(!isset( $_POST["art_created_date"]))
                 {
                      $_POST["art_created_date"]="now()";
                 }
