@@ -5,14 +5,15 @@ include($path);
 /* $path .= "/webofart/include/session.php";
   include($path);
  */
+$path2 = $_SERVER['DOCUMENT_ROOT'];
+$path2 .= "/webofart/include/session.php";
+include($path2);
 ?>
 
 
 <?php
 try {
-    session_start();
-//$_SESSION['username']="smp1613s";
-    //   $_SESSION['username']="pc8101234";
+    
     $username = $_SESSION["username"];
 // echo $username;
     $sql = "SELECT * FROM user WHERE username='$username'";
@@ -46,9 +47,9 @@ try {
                     echo '';
             }
         }
-//echo $name;
-//echo $username;
-//echo $user_photo;
+echo $name;
+echo $username;
+echo $user_photo;
     }
 } catch (PDOException $e) {
     echo $e->getMessage();
@@ -81,13 +82,10 @@ try {
                 <div class="col-md-4">
                     <div class="profile-img">
                         <?php
-                        $path = "../../image/profile/".$user_photo;
-                        //$path = "../../image/profile/".$_SESSION["usern"];
-                        //$path = "../image/profile/" . $user_photo;
-//echo $path;           
-                        ?>
+$path3 = "/webofart/image/profile".$user_photo;
+?>
 
-                        <img src="<?php echo htmlspecialchars($path); ?>" alt="test" />
+                        <img src="<?php echo htmlspecialchars($path3); ?>" alt="test" />
 
                         <div class="file btn btn-lg btn-primary">
                             Change Photo

@@ -5,8 +5,8 @@ $path .= "/webofart/include/dbcon.php";
 
 include_once($path);
 $path = $_SERVER['DOCUMENT_ROOT'];
-$path .= "/webofart/include/session.php";
-include($path);
+$path1 .= "/webofart/include/session.php";
+include($path1);
 ?>
 <?php
 //echo '1';
@@ -91,9 +91,9 @@ if (isset($_GET['page'])) {
         <!--================Header Menu Area =================-->
             
 <?php
-$path = $_SERVER['DOCUMENT_ROOT'];
-$path .= "/webofart/include/header.php";
-include($path);
+$path2 = $_SERVER['DOCUMENT_ROOT'];
+$path2 .= "/webofart/include/header.php";
+include($path2);
 ?>
             <div class="top_menu row m0">
             </div>
@@ -112,6 +112,9 @@ include($path);
                 </div>
             </div>
         </section>
+        
+<!--        <div class="jumbotron bgimg jumbotron-fluid" style="height: 150px; width: 500px; background-image: url(../image/banner/banner12.jpg);">
+                   </div>-->
         <!--================End Home Banner Area =================-->
 
         <!--================Category Product Area =================-->

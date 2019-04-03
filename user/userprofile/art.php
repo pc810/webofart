@@ -196,7 +196,7 @@ include_once($path);
                     <div class="profile-img">
 <?php
 //$path = "/webofart/image/profile/".$art_loc;
-$path = "/webofart/image/userart/anna-sullivan-518434-unsplash.jpg";
+//$path = "/webofart/image/userart/anna-sullivan-518434-unsplash.jpg";
 $path = "/webofart/image/userart/".$art_loc;
 
 //$path = "../../image/userart/".$art_loc;

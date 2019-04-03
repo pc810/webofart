@@ -6,10 +6,13 @@
            // $path .= "/webofart/include/session.php";
             //include($path);$path .= "/webofa
             
+            $path2 = $_SERVER['DOCUMENT_ROOT'];
+$path2 .= "/webofart/include/session.php";
+include($path2);
 ?>
 <?php
        try{
-           session_start();
+           
        //$_SESSION['username']='smp1613s';
        //echo 'hi';
        $username=$_SESSION['username'];
@@ -18,6 +21,7 @@
        $file_name = $_FILES['file']['name'];
        $file_size = $_FILES['file']['size'];
        $file_tmp = $_FILES['file']['tmp_name'];
+      
        echo $file_name;
        $path = $_SERVER['DOCUMENT_ROOT'];
        $path .= "/webofart/image/profile";
