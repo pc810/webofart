@@ -26,9 +26,9 @@
                 }  
                 else
                 {
-                    if(isset($_POST["username"]) && isset($_POST["password"]) )
+                    if(isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["Captcha"]) )
                 {
-                    if($_POST["username"]!="" && $_POST["password"]!="")
+                    if($_POST["username"]!="" && $_POST["password"]!="" && $_POST["Captcha"]==$_COOKIE["Captcha"])
                     {//   echo "inside";
                     try
                     {
@@ -48,7 +48,7 @@
                            //     session_start();
          
                              // setcookie("id", $_POST['name'],time()+60*60*2);
-                                
+                               setcookie("Captcha","",time()+(86400*30),"/"); 
                                $_SESSION['username']=$_POST['username'];
                                $flag=1;
                                header("Location: /webofart/user/userprofile/userprofile.php");
@@ -81,9 +81,9 @@
             else
             {
                
-                if(isset($_POST["username"]) && isset($_POST["password"]) )
+                if(isset($_POST["username"]) && isset($_POST["password"]) && isset($_POST["Captcha"]))
                 {
-                    if($_POST["username"]!="" && $_POST["password"]!="")
+                    if($_POST["username"]!="" && $_POST["password"]!="" && $_POST["Captcha"]==$_COOKIE["Captcha"])
                     {//   echo "inside";
                     try
                     {
@@ -102,6 +102,7 @@
                                 session_start();
          
                              // setcookie("id", $_POST['name'],time()+60*60*2);
+                               setcookie("Captcha","",time()+(86400*30),"/");
                                 $_SESSION['username']=$_POST['username'];
                                 $flag = 1;
                                  header("Location: ../index.php");
