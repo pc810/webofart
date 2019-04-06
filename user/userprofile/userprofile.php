@@ -14,6 +14,10 @@ include($path2);
 <?php
 try {
     
+    if(isset($_SESSION["username"]))
+    {
+        
+    }
     $username = $_SESSION["username"];
 // echo $username;
     $sql = "SELECT * FROM user WHERE username='$username'";
@@ -47,10 +51,10 @@ try {
                     echo '';
             }
         }
-echo $name;
+/*echo $name;
 echo $username;
 echo $user_photo;
-    }
+    */}
 } catch (PDOException $e) {
     echo $e->getMessage();
     die();
@@ -82,7 +86,7 @@ echo $user_photo;
                 <div class="col-md-4">
                     <div class="profile-img">
                         <?php
-$path3 = "/webofart/image/profile".$user_photo;
+$path3 = "/webofart/image/profile/".$user_photo;
 ?>
 
                         <img src="<?php echo htmlspecialchars($path3); ?>" alt="test" />
@@ -115,7 +119,10 @@ $path3 = "/webofart/image/profile".$user_photo;
                     </div>
                 </div>
                 <div class="col-md-2">
+                    <form action="/webofart/user/userprofile/editprofile.php" method="post" enctype="multipart/form-data" >
                     <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                    </form>
+                    
                 </div>
             </div>
             <div class="row">
@@ -219,6 +226,7 @@ $path3 = "/webofart/image/profile".$user_photo;
                                            $path = "/webofart/image/userart/" . $art_loc;
                                           //  $path = "../" . $art_loc;
                                             $arts = "/webofart/user/userprofile/art.php?artid=" . $art_id;
+//                                           $arts = "/webofart/displayart/aboutart.php?artid=" . $art_id;
                                         }
                                         ?>
 

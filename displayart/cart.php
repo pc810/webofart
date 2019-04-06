@@ -9,6 +9,10 @@ $path .= "/webofart/include/session.php";
 include($path);
 ?>
 <?php
+if(!isset($_SESSION["username"]))
+{
+    header("Location: /webofart/index.php");
+}
 $username = $_SESSION['username'];
 //echo $username;
 $sql = "select * from cart where username='$username'";
@@ -51,17 +55,45 @@ while ($r = $query->fetch(PDO::FETCH_ASSOC)) {
         <link rel="stylesheet" href="css/responsive.css">
     </head>
 
-    <body>
+    
 
         <!--================Header Menu Area =================-->
         <?php
         $path = $_SERVER['DOCUMENT_ROOT'];
         $path .= "/webofart/include/header.php";
         include($path);
-        ?><div class="top_menu row m0">
-        </div>        <!--================Header Menu Area =================-->
+        ?>
+               
+                <?php
+                                  
+                                   $sql="select * from cart_content natural join art where cart_id='$cart_id'";
+                                    $query = $dbhandler->query($sql);
+                                    $rowcount=$query->rowCount();
+                                    $sum=0;
+//echo $query->rowCount();
+                                    if($rowcount<=0)
+                                    {
+                                        ?>
+    <body style="background-color: white;">
+                <div class="jumbotron" style="background-color: white;">                     
+                <center>
+                    <img src="/webofart/image/web/emptycart.png" alt="empty">
+                   <h1 class="card-title text-center" style="font-size:50px;">Cart is Empty</h1>
+                </center>
+                </div>                            
+                                            
+                                            
+                                            
+                                            
+                                        <?php
+                                    }
+                                    else{
+                                        ?>
+<body style="background:url('/webofart/image/web/pattern.png');">
+<!--================Header Menu Area =================-->
 
         <!--================Home Banner Area =================-->
+        <br>
         <section class="banner_area">
             <div class="banner_inner d-flex align-items-center">
                 <div class="container">
@@ -79,10 +111,10 @@ while ($r = $query->fetch(PDO::FETCH_ASSOC)) {
 
         <!--================Cart Area =================-->
         <section class="cart_area">
-            <div class="container">
-                <div class="cart_inner">
+            <div class="container">                
+        <div class="cart_inner">
                     <div class="table-responsive">
-                        <table class="table">
+                        <table class="table" style="background-color: white">
                             <thead>
                                 
                                 <tr>
@@ -93,13 +125,8 @@ while ($r = $query->fetch(PDO::FETCH_ASSOC)) {
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php
-                                  
-                                   $sql="select * from cart_content natural join art where cart_id='$cart_id'";
-                                    $query = $dbhandler->query($sql);
-                                    $rowcount=$query->rowCount();
-                                    $sum=0;
-//echo $query->rowCount();
+                               <?php
+                                    $art_loc="";
                                     while ($r = $query->fetch(PDO::FETCH_ASSOC)) {
                                         foreach ($r as $key => $value) {
 //echo $key.' ';
@@ -134,9 +161,8 @@ while ($r = $query->fetch(PDO::FETCH_ASSOC)) {
                                     <td>
                                         <div class="media">
                                             <div class="f_p_img">
-                                        <img class="img-thumbnail" src="<?php echo $path1;?>" alt="">
-                                        
-                                    </div>
+                                                <img class="img-thumbnail" src="<?php echo $path1;?>" alt="" width="250" height="250">                                        
+                                            </div>    
                                             
                                         </div>
                                     </td>
@@ -153,7 +179,7 @@ while ($r = $query->fetch(PDO::FETCH_ASSOC)) {
                                     </td>
                                      <td>
                                         <div class="product_count">
-                                            <a class="gray_btn" href="/webofart/displayart/removefromcart.php?artid=<?php echo $art_id;?>&cartid=<?php echo $cart_id;?>">remove</a>
+                                            <a class="btn btn-danger" href="/webofart/displayart/removefromcart.php?artid=<?php echo $art_id;?>&cartid=<?php echo $cart_id;?>">Remove</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -175,22 +201,7 @@ while ($r = $query->fetch(PDO::FETCH_ASSOC)) {
                                         <h5>₹<?php echo $sum;?></h5>
                                     </td>
                                 </tr>
-                                <tr class="shipping_area">
-                                    <td>
-
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                    <td>
-                                        <h5>Shipping</h5>
-                                    </td>
-                                    <td>
-
-
-
-                                    </td>
-                                </tr>
+                                
                                 <tr class="out_button_area">
                                     <td>
 
@@ -198,17 +209,19 @@ while ($r = $query->fetch(PDO::FETCH_ASSOC)) {
                                     <td>
 
                                     </td>
-                                    <td>
-
-                                    </td>
+                            <div class="col-md-3">
+                                
+                            </div>
                                     <td>
                                         <div class="checkout_btn_inner">
-                                            <a class="gray_btn" href="displayart.php">Continue Shopping</a>
+                                            <a class="btn btn-dark" href="displayart.php">Continue Shopping</a>
                                             <?php
-                                            if($rowcount!=0){
+                                       if($rowcount!=0){
                                             ?>
-                                            <a class="main_btn" href="checkout.php?saleamount=<?php echo $sum;?>&cartid=<?php echo $cart_id;?>">Proceed to checkout</a>
-                                                    <?php } ?>
+                                            <a class="btn btn-outline-primary" href="checkout.php?saleamount=<?php echo $sum;?>&cartid=<?php echo $cart_id;?>">Proceed to checkout</a>
+                                                    <?php }
+                                    }
+                                    ?>
                                         </div>
                                     </td>
                                 </tr>
@@ -225,7 +238,7 @@ while ($r = $query->fetch(PDO::FETCH_ASSOC)) {
         <!--================ End Subscription Area ================-->
 
         <!--================ start footer Area  =================-->
-        <footer class="footer-area section_gap">
+<!--        <footer class="footer-area section_gap">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3  col-md-6 col-sm-6">
@@ -241,7 +254,7 @@ while ($r = $query->fetch(PDO::FETCH_ASSOC)) {
 
                     </div>
                     <div class="col-lg-2 col-md-6 col-sm-6">
-                        <!--                        <div class="single-footer-widget f_social_wd">
+                                                <div class="single-footer-widget f_social_wd">
                                                     <h6 class="footer_title">Follow Us</h6>
                                                     <p>Let us be social</p>
                                                     <div class="f_social">
@@ -250,13 +263,13 @@ while ($r = $query->fetch(PDO::FETCH_ASSOC)) {
                                                         </a>
                                                        
                                                         
-                                                    </div>-->
+                                                    </div>
                     </div>
                 </div>
             </div>
             
        
-    </footer>
+    </footer>-->
     <!--================ End footer Area  =================-->
 
 

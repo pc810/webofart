@@ -7,9 +7,12 @@
 <?php 
     try{
 
-     $dbhandler = new PDO('mysql:host=127.0.0.1;dbname=webofart','root','');
+        $path = $_SERVER["DOCUMENT_ROOT"];
+        $path .= "/webofart/include/dbcon.php";
+        include_once($path);
+     //$dbhandler = new PDO('mysql:host=127.0.0.1;dbname=webofart','root','');
      //$dbhandler = new PDO('mysql:host=localhost;dbname=webofart','root','root');
-     $dbhandler->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+     //$dbhandler->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
   //   echo 'successfully connected';
    $path = $_SERVER['DOCUMENT_ROOT'];
    $path .= "/webofart/include/header.php";
@@ -50,37 +53,91 @@
                              ?> /> Oil
                         </li>
                         <li>
-                            &nbsp&nbsp<input type="checkbox" class="common_selector Medium" value="Water-Color" 
+                            &nbsp&nbsp<input type="checkbox" class="common_selector Medium" value="watercolor" 
                             <?php
                             if(isset($_GET['Medium'])){
                               $te = explode(",",$_GET["Medium"]);
                               foreach($te as $med){
-                               if($med=="Water-Color") echo 'checked="checked"';
+                               if($med=="watercolor") echo 'checked="checked"';
                               } 
                              }
                              ?> /> Water-Color
                         </li>
                         <li>
-                            &nbsp&nbsp<input type="checkbox" class="common_selector Medium" value="Acrylic"
+                            &nbsp&nbsp<input type="checkbox" class="common_selector Medium" value="acrylic"
                              <?php
                             if(isset($_GET['Medium'])){
                               $te = explode(",",$_GET["Medium"]);
                               foreach($te as $med){
-                               if($med=="Acrylic") echo 'checked="checked"';
+                               if($med=="acrylic") echo 'checked="checked"';
                               } 
                              }
                              ?> /> Acrylic                        
                         </li>
                         <li>
-                            &nbsp&nbsp<input type="checkbox" class="common_selector Medium" value="Pastels"
+                            &nbsp&nbsp<input type="checkbox" class="common_selector Medium" value="pastels"
                              <?php
                             if(isset($_GET['Medium'])){
                               $te = explode(",",$_GET["Medium"]);
                               foreach($te as $med){
-                               if($med=="Pastels") echo 'checked="checked"';
+                               if($med=="pastels") echo 'checked="checked"';
                               } 
                              }
                              ?> /> Pastels
+                        </li>
+                    </div>
+                </div>
+                <!-- <br>
+                <br> -->&nbsp&nbsp
+                                <div class="btn-group">
+                    <button class="btn btn-outline-primary dropdown-toggle badge-pill " data-toggle="dropdown" aria-hashpop='true' aria-expanded='false' >
+                        Genre
+                    </button>
+                    <div class="dropdown-menu round border-info ">
+                        <li>
+                        
+                            &nbsp&nbsp<input type="checkbox" class="common_selector Genre" value="nature" 
+                            <?php
+                            if(isset($_GET['Genre'])){
+                              $te = explode(",",$_GET["Genre"]);
+                              foreach($te as $med){
+                               if($med=="nature") echo 'checked="checked"';
+                              } 
+                             }
+                             ?> /> Nature
+                        </li>
+                        <li>
+                            &nbsp&nbsp<input type="checkbox" class="common_selector Genre" value="digital" 
+                            <?php
+                            if(isset($_GET['Genre'])){
+                              $te = explode(",",$_GET["Genre"]);
+                              foreach($te as $med){
+                               if($med=="digital") echo 'checked="checked"';
+                              } 
+                             }
+                             ?> /> Digital
+                        </li>
+                        <li>
+                            &nbsp&nbsp<input type="checkbox" class="common_selector Genre" value="abstract"
+                             <?php
+                            if(isset($_GET['Genre'])){
+                              $te = explode(",",$_GET["Genre"]);
+                              foreach($te as $med){
+                               if($med=="abstract") echo 'checked="checked"';
+                              } 
+                             }
+                             ?> /> Abstract                  
+                        </li>
+                        <li>
+                            &nbsp&nbsp<input type="checkbox" class="common_selector Genre" value="history"
+                             <?php
+                            if(isset($_GET['Genre'])){
+                              $te = explode(",",$_GET["Genre"]);
+                              foreach($te as $med){
+                               if($med=="history") echo 'checked="checked"';
+                              } 
+                             }
+                             ?> /> History
                         </li>
                     </div>
                 </div>
@@ -179,9 +236,7 @@
                     <input type="hidden" id="hidden_maximum_width" value="20000" />
                     <p id="width_show">&nbsp&nbsp100 - 20000</p>
                     <div id="width_range"></div>
-                 </div>    
-                <div class="list-group">
-                    </div>
+                 </div>   
                 </div>
                 <!-- <br>
                 <br> -->&nbsp&nbsp
@@ -215,6 +270,10 @@
             if(isset($_GET["Medium"]) && !empty($_GET["Medium"])){
                 $M_filter ='"'. implode('","', explode(',', $_GET["Medium"])) .'"';
                 $query.= " AND art_medium IN(".$M_filter.")";
+            }
+            if(isset($_GET["Genre"]) && !empty($_GET["Genre"])){
+                $G_filter ='"'. implode('","', explode(',', $_GET["Genre"])) .'"';
+                $query.= " AND art_genre IN(".$G_filter.")";
             }
             if(isset($_GET["username"]) && !empty($_GET["username"])){
                 $U_filter = '"'. implode('","', explode(',', $_GET["username"])) .'"';
@@ -270,6 +329,7 @@
      <h4 style="text-align:center;" class="text-danger" > Rs. '. $row['art_price'] .'</h4>
      <p> Description : '. $row['art_about'].' <br />
         Medium : '. $row['art_medium'] .' <br />
+        Genre : '. $row['art_genre'] .' <br />
         Dimensions : '.$row['art_width'].' cm x '.$row['art_height'].' cm</p>
     </div></div>';
                 $fl+=1;
@@ -306,6 +366,7 @@ $(document).ready(function(){
         var minimum_height = $('#hidden_minimum_height').val();
         var maximum_height = $('#hidden_maximum_height').val();
         var Medium = get_filter('Medium');
+        var Genre = get_filter('Genre');
         var username = get_filter('User');
         var Art_Title = get_filter('Art_Title');
         theForm = document.createElement('form');
@@ -319,6 +380,10 @@ $(document).ready(function(){
   newInput2.type = 'hidden';
   newInput2.name = 'Medium';
   newInput2.value = Medium;
+  newInput11 = document.createElement('input');
+  newInput11.type = 'hidden';
+  newInput11.name = 'Genre';
+  newInput11.value = Genre;
   newInput3= document.createElement('input');
   newInput3.type = 'hidden';
   newInput3.name = 'username';
@@ -362,6 +427,7 @@ $(document).ready(function(){
   theForm.appendChild(newInput8);
   theForm.appendChild(newInput9);
   theForm.appendChild(newInput10);
+  theForm.appendChild(newInput11);
    document.getElementById('hidden_form_container').appendChild(theForm);
   // ...and submit it
   theForm.submit();

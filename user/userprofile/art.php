@@ -17,11 +17,11 @@
     else{
         $art_id=$_SESSION['artid'];
     }
-    echo $art_id;
-    echo 'hello';
+    //echo $art_id;
+    //echo 'hello';
    $sql = "select * from art WHERE art_id='$art_id'";
    $query = $dbhandler->query($sql);
-   echo $query->rowCount();
+   //echo $query->rowCount();
 
 
 while ($r = $query->fetch(PDO::FETCH_ASSOC)) {
@@ -62,13 +62,13 @@ case "username":
     $art_creater=$value;
     break;
 default:
-echo '';
+//echo '';
 
 
 }
 }
-echo $art_price;
-echo $art;
+/*echo $art_price;
+echo $art;*/
 }
 unset($_SESSION['artid']);
 ?>

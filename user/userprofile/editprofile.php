@@ -1,8 +1,28 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="robots" content="noindex, nofollow">
+
+        <title><?php echo $name; ?></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <link rel="stylesheet" href="userprofile.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+    </head>
+    <!------ Include the above in your HEAD tag ---------->
+    <body>
+        <?php
+        $path = $_SERVER['DOCUMENT_ROOT'];
+        $path .= "/webofart/include/header.php";
+        include_once($path);
+        ?>
 
 <?php
-$path = $_SERVER['DOCUMENT_ROOT'];
-$path .= "/webofart/include/dbcon.php";
-include($path);
+//$path = $_SERVER['DOCUMENT_ROOT'];
+//$path .= "/webofart/include/dbcon.php";
+//include($path);
 /* $path .= "/webofart/include/session.php";
   include($path);
  */
@@ -10,10 +30,13 @@ include($path);
 
 <?php
         
-        session_start();
+  //      session_start();
 //$_SESSION['username']="smp1613s";
     //   $_SESSION['username']="pc8101234";
-    $username = $_SESSION["username"];
+   if(!isset($_SESSION["username"])){
+       header("Location: /webofart/index.php");
+   }
+$username = $_SESSION["username"];
         $flag=1;
         $emailerr=NULL;
         $contacterr=NULL;
@@ -58,7 +81,7 @@ include($path);
 
 <?php
 try {
-    session_start();
+    //session_start();
 //$_SESSION['username']="smp1613s";
     //   $_SESSION['username']="pc8101234";
     $username = $_SESSION["username"];
@@ -103,27 +126,7 @@ try {
     die();
 }
 ?>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="robots" content="noindex, nofollow">
-
-        <title><?php echo $name; ?></title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <link rel="stylesheet" href="userprofile.css">
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-
-    </head>
-    <!------ Include the above in your HEAD tag ---------->
-    <body>
-        <?php
-        $path = $_SERVER['DOCUMENT_ROOT'];
-        $path .= "/webofart/include/header.php";
-        include_once($path);
-        ?>
-        <div class="container emp-profile">
+<div class="container emp-profile">
 
             <div class="row">
                 <div class="col-md-4">

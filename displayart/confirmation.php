@@ -31,7 +31,7 @@ include($path);
         <link rel="stylesheet" href="css/responsive.css">
     </head>
 
-    <body>
+    <body style="background: url('/webofart/image/web/pattern.png');">
 
         <!--================Header Menu Area =================-->
 
@@ -39,11 +39,11 @@ include($path);
         $path = $_SERVER['DOCUMENT_ROOT'];
         $path .= "/webofart/include/header.php";
         include($path);
-        ?><div class="top_menu row m0">
-        </div>
+        ?>
         <!--================Header Menu Area =================-->
 
         <!--================Home Banner Area =================-->
+        <br>
         <section class="banner_area">
             <div class="banner_inner d-flex align-items-center">
                 <div class="container">
@@ -61,7 +61,8 @@ include($path);
 
         <!--================Order Details Area =================-->
         <section class="order_details p_120">
-            <div class="container">
+            <div class="container" style="background-color: white;">
+                <br><br>
                 <h3 class="title_confirmation">Thank you. Your order has been received.</h3>
                 <div class="row order_d_inner">
                     <div class="col-lg-4">
@@ -309,7 +310,7 @@ include($path);
         <!--================ End Subscription Area ================-->
 
         <!--================ start footer Area  =================-->
-        <footer class="footer-area section_gap">
+<!--        <footer class="footer-area section_gap">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3  col-md-6 col-sm-6">
@@ -325,7 +326,7 @@ include($path);
                 </div>
 
             </div>
-        </footer>
+        </footer>-->
         <!--================ End footer Area  =================-->
 
 

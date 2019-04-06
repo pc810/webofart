@@ -7,7 +7,7 @@
            
  ?>
 <html>
-    <body>
+    <body style="background:url('/webofart/image/web/pattern.png');">
         <?php
           
    $path = $_SERVER['DOCUMENT_ROOT'];
@@ -144,9 +144,9 @@
                    echo " NOT VALID";
                 }
             
-             $path = $_SERVER['DOCUMENT_ROOT'];
-   $path .= "/webofart/include/footer.php";
-   include_once($path);
+//             $path = $_SERVER['DOCUMENT_ROOT'];
+//   $path .= "/webofart/include/footer.php";
+//   include_once($path);
         ?>   
     </body>         
 </html>

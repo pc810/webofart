@@ -14,12 +14,13 @@
         $sql="delete from user WHERE username='$username'";
         $query = $dbhandler->query($sql);
         echo $query->rowCount();
-        echo 'hi';
+    //    echo 'hi';
         
     }catch(PDOException $e)
     {
+        header("Location /webofart/index.php");
          echo $e->getMessage();
         die();
     }
-    //header('location:/webofart/user/login.php');
+    header('location:/webofart/user/login.php');
 ?>

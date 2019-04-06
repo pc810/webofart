@@ -1,95 +1,37 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
-    <head>
-        <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display" rel="stylesheet">
-        <meta charset="UTF-8">
-        <title></title>
-        <style>
-        .yo
-        {
-            color: white;
-            font-family: 'Major Mono Display', monospace; 
-            font-size: 100px;
-            text-align:center ;
-        }
-           body
-            {
-                background-repeat: no-repeat;
-/*                background-image: url('../image/1.jpg');*/
-background-image: url('../image/2.jpg');
-            }
-        </style>
-    </head>
-    <body>
-        
-     <?php 
-     
-            $path = $_SERVER['DOCUMENT_ROOT'];
-            $path .= "/webofart/include/header.php";
-            include_once($path);       
-        ?>
-        
-        <div class="container">
-            <span><br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <span>
-            <h1 class="yo">LOGIN PAGE</h1> 
-            <form action="/webofart/validate/validateuser.php" method="POST">
-            
-            
-             <br>
-            <br>
-            <br>
-            <div class="row">
-                <div class="col-md-4">          
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="name" name="username" placeholder="Username">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="name" name="password" placeholder="password">
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    
-                </div>
-            </div>
-            <div class="row" style="text-align: center">
-                <div class="col-md-12">
-                <button type="submit" class="btn btn-success">Sign in</button>
-                </div>
-                </div>
-        </form>
-    </span>
-            </div>
-              
-  
+    <body style="background:url('/webofart/image/web/pattern.png');">
 
- 
-     <?php 
-         $path = $_SERVER['DOCUMENT_ROOT'];
-   $path .= "/webofart/include/lessfooter.php";
-  // include_once($path);
-     ?>
-    
+        <?php
+        $path = $_SERVER['DOCUMENT_ROOT'];
+        $path .= "/webofart/include/header.php";
+        include_once($path);
+        ?>
+        <div class="container">
+           <br><br><br>
+           <div class="row" >
+                <div class="col-lg-10 col-xl-9 mx-auto">
+                    <div class="card card-signin flex-row my-5">
+                        <div class="card-img-left d-none d-md-flex" style="background:no-repeat scroll center url('/webofart/image/web/regfore4.jpg');">
+                            <!-- Background image for card set in CSS! -->
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title text-center" style="font-size:50px;">LOGIN PAGE</h1>
+                            <form action="/webofart/validate/validateuser.php" method="POST"class="form-signin">
+                                <div class="form-label-group">
+                                    <input type="text" id="inputusername" class="form-control" placeholder="Username" required autofocus name="username">
+                                    <label for="inputusername">Username</label>
+                                </div>
+                                
+                                <div class="form-label-group">
+                                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required name="password">
+                                    <label for="inputPassword">Password</label>
+                                </div>
+                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
