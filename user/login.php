@@ -26,6 +26,10 @@
                                     <input type="password" id="inputPassword" class="form-control" placeholder="Password" required name="password">
                                     <label for="inputPassword">Password</label>
                                 </div>
+                                <div class="form-label-group">
+                                    <div>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<img src="captchafont.php">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="/webofart/user/login.php">Get A New Code</a></div>
+                                    <input type="text" id="inputCaptcha" class="form-control" placeholder="Captcha" required name="Captcha">
+                                </div>
                                 <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
                             </form>
                         </div>
