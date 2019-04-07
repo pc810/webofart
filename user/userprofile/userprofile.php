@@ -130,6 +130,7 @@ $path3 = "/webofart/image/profile/".$user_photo;
                     <div class="profile-work">
                         <p>WORK LINK</p>
                         <a href="/webofart/user/userprofile/editprofile.php">Update Profile</a><br/>
+                        <a href="/webofart/displayart/purchasehistory.php">Purchase History</a><br/>
 
                         <p></p>
                         <a href="/webofart/user/userprofile/deleteaccount.php">Delete Account</a><br/>
