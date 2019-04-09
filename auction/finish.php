@@ -11,6 +11,7 @@
         $sql = "CALL assign_art()";
         $stmt = $dbhandler->prepare($sql);
         $stmt->execute();
+        
         if(!isset($_GET["auction_id"]))
         {
             echo "not set";

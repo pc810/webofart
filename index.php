@@ -80,30 +80,8 @@ and open the template in the editor.
                 </div>
             </div>
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-
-                    <div class="carousel-item  active">
-                        <div class="jumbotron jumbotron-fluid"  style="background-size:50% 100%;  background-image: url(http://blog.hostbaby.com/wp-content/uploads/2014/03/Trees_1400x900-1024x658.png);">
-                            <div class="container">
-                                <h1 class="display text-dark">
-                                    <font style="size: 30px;">Online Art Gallery</font>
-                                </h1>
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <h4>Meet contemporary artists, buy directly from them </h4>
-                                        <br><h6>&nbsp; Register YourSelf Today</h6>
-                                        <br>
-                                        <br>
-                                        <form class="form-group" action="user/registration.php">
-                                            <button class="btn btn-primary">Register</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="carousel-item">
+                <div class="carousel-inner">                    
+                    <div class="carousel-item active">
                         <div class="jumbotron jumbotron-fluid" style="  background-repeat: no-repeat;
                              background-size:100% 100%;  background-image: url(/webofart/image/web/back1.jpeg);">
                             <div class="container">
@@ -130,6 +108,32 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div>
+                <?php
+                    if(!isset($_SESSION["username"]))
+                    {
+                        echo '<div class="carousel-item">
+                        <div class="jumbotron jumbotron-fluid"  style="background-size:50% 100%;  background-image: url(http://blog.hostbaby.com/wp-content/uploads/2014/03/Trees_1400x900-1024x658.png);">
+                            <div class="container">
+                                <h1 class="display text-dark">
+                                    <font style="size: 30px;">Online Art Gallery</font>
+                                </h1>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h4>Meet contemporary artists, buy directly from them </h4>
+                                        <br><h6>&nbsp; Register YourSelf Today</h6>
+                                        <br>
+                                        <br>
+                                        <form class="form-group" action="user/registration.php">
+                                            <button class="btn btn-primary">Register</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>';
+                    }
+                ?>
                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>

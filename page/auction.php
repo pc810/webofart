@@ -77,7 +77,7 @@ padding: 15px;
         </div>
         <div class="container">             
 <br>
-        <hr>
+        <hr>        
         <?php
         try {
             
@@ -92,6 +92,11 @@ padding: 15px;
             $auction_id = 0;
             $auction_name = $art_loc = $auction_posted = $auction_start = $auction_end = "";
             echo "<div class='container jumbotron'>";
+                if(isset($_SESSION["username"]))
+                {
+                    echo '<a href="../auction/auctionhistory.php" class="btn btn-info">Results</a>';
+                }
+            
                             if(isset($_SESSION["admin"]) && $_SESSION["admin"] == 1)
                             {
                                 echo '<a href="../auction/create_auction.php">'
@@ -129,11 +134,12 @@ padding: 15px;
                     }
                 }
                 //echo "<br>".$auction_id."<br>".$auction_name."<br>".$art_loc."<br>".$auction_posted."<br>".$auction_start."<br>".$auction_end."<br>";
-                ?>  
+                ?>          
                 <div class="jumbotron" style="background-size: 100% 170%; background-repeat: no-repeat; background-image: url(<?php echo $art_loc; ?>);">
 <!--                    <p>
                         ID : <?php //echo $auction_id; ?>
                     </p>-->
+                    
                     <center>                        
                             <h3 id="<?php echo $auction_id; ?>" style="color:white;"> </h3>
                     </center>
@@ -143,14 +149,14 @@ padding: 15px;
                 <div class="row">
                     <div class="col"><h3><?php echo $auction_name; ?></h3></div>
                     <div class="ml-auto">
-                                                <div id="myend">
+                                                <div id="myend<?php echo $auction_id; ?>">
                             
                         
                         <?php 
                             if(isset($_SESSION["admin"]) && $_SESSION["admin"]== 1)
                             {
                         ?>
-                        <a class="btn badge-danger" href="/webofart/auction/deleteauction.php?auction_id=<?php echo $auction_id; ?>">                            
+                        <a class='btn badge-danger' href='/webofart/auction/deleteauction.php?auction_id=<?php echo $auction_id; ?>'>                            
                         Delete
                         </a>
                             <a class="btn badge-info" href="/webofart/auction/create_auction_art.php?auction_id=<?php echo $auction_id; ?>">
@@ -222,6 +228,8 @@ foreach ($auctions as $key => $auction) {
                         document.getElementById(a).innerHTML = "<h5>Starting in </h5><br><h2>"+days + "d " + hours + "h "
                             + minutes + "m " + seconds + "s "+"</h2>";
                     }
+                    var value = 'myend'+a; 
+                    console.log(value); 
                     // If the count down is finished, write some text 
                     if (distance < 0 && flag==0) {
                         clearInterval(x);
@@ -229,8 +237,8 @@ foreach ($auctions as $key => $auction) {
             <?php if(isset($_SESSION["admin"]))
                 {
                 
-             ?>
-                             document.getElementById("myend").innerHTML =  "<a class='btn badge-success' href='/webofart/auction/finish.php?auction_id=<?php echo $auction_id; ?>'>Finish</a>";             
+             ?>       
+                             document.getElementById(value).innerHTML =  "<a class='btn badge-success' href='/webofart/auction/finish.php?auction_id=<?php echo $auction_id; ?>'>Finish</a> "+"<a class='btn badge-danger' href='/webofart/auction/deleteauction.php?auction_id=<?php echo $auction_id; ?>'>Delete";             
                 <?php
                 
                 }?>

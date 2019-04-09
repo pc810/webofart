@@ -113,9 +113,9 @@
                                     */ 
                                    
    
-                                     echo "<br><br><center><h1 align='center'> YOUR DETAILS ARE REGISTERED</h1>";
+                                     echo "<br><br><center><h1 align='center' style='color:white;'> YOUR DETAILS ARE REGISTERED</h1>";
                                      echo "<br><br><br><img src='/webofart/image/login_successful.png' alt='correct' height='300' width='300'>";
-                                     echo "<br><br><br><h2 align='center'>Login Again</h2></center>";
+                                     echo "<br><br><br><h2 align='center' style='color:white;'>Login Again</h2></center>";
                               }  
                            catch(PDOException $e)
                               {

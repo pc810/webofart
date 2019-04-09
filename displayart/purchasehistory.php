@@ -78,14 +78,14 @@ if (!isset($_SESSION["username"])) {
                 }
             }
                 ?>
-        <h4 align="center" style="color:#FFF">Sale Id: <?php echo $sale_id;?></h4>
+<!--        <h4 align="center" style="color:#FFF">Sale Id: <?php echo $sale_id;?></h4>
         <h4 align="center" style="color:#FFF">Order date:<?php echo $sale_date; ?></h4>
-                    
-                        
+                    -->
             <?php
 
             $sql1 = "SELECT * FROM sales_order_detail NATURAL JOIN art WHERE sale_id='$sale_id'";
             $query1 = $dbhandler->query($sql1);
+            $sum = 0;   
             while ($r = $query1->fetch(PDO::FETCH_ASSOC)) {
                 foreach ($r as $key => $value) {
 //echo $key.' ';
@@ -125,8 +125,14 @@ if (!isset($_SESSION["username"])) {
                         <div class="media">
                             <div class="f_p_img">
                                 <img class="img-thumbnail" src="<?php echo $path1; ?>" alt="" width="250" height="250">                                        
+<!--                                <h4 align="center" style="color:#FFF">Sale Id: <?php echo $sale_id;?></h4>-->
                             </div>    
-
+                            <center>
+                            <div class="col-md-8">
+                                <br><br><br>
+                                <h5 align="center" style="color:#000">Ordered on <br><br><br><br></h5><h2><?php echo $sale_date; ?></h2>
+                            </div>
+                            </center>
                         </div>
                     </td>
                     <td>
