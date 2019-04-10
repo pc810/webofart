@@ -1,0 +1,279 @@
+-- phpMyAdmin SQL Dump
+-- version 4.4.10
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost:8889
+-- Generation Time: Mar 11, 2019 at 10:54 AM
+-- Server version: 5.5.42
+-- PHP Version: 5.5.26
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `webofart`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `art`
+--
+
+CREATE TABLE `art` (
+  `art_id` int(11) NOT NULL,
+  `username` varchar(15) NOT NULL,
+  `art_title` varchar(256) NOT NULL,
+  `art_medium` varchar(256) NOT NULL,
+  `art_width` float NOT NULL,
+  `art_height` float NOT NULL,
+  `art_loc` varchar(500) NOT NULL,
+  `art_about` varchar(2000) NOT NULL,
+  `art_price` float NOT NULL,
+  `art_genre` varchar(25) NOT NULL,
+  `art_posted` datetime NOT NULL,
+  `art_created_date` date NOT NULL,
+  `art_status` varchar(15) NOT NULL DEFAULT 'available'
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `art`
+--
+
+INSERT INTO `art` (`art_id`, `username`, `art_title`, `art_medium`, `art_width`, `art_height`, `art_loc`, `art_about`, `art_price`, `art_genre`, `art_posted`, `art_created_date`, `art_status`) VALUES
+(2, 'smp1613s', 'imageofsmile', 'oil', 5000, 5000, 'max-van-den-oetelaar-1150510-unsplash.jpg', 'good one day  1 sfdad jfasjkdsf\r\nsdf\r\nsfg dsajf jkdas jkadsf\r\nsfgs                                                                                                                                                                                                                                                                                                                                                                                                                                       ', 300000, 'nature', '2019-02-21 11:11:08', '2019-02-21', 'available'),
+(3, 'smp1613s', 'image2', 'oil', 500, 500, 'anna-sullivan-518434-unsplash.jpg', 'good one', 110000, 'nature', '2019-02-21 11:11:08', '2019-02-20', 'available'),
+(4, 'smp1613', 'image3', 'oil', 500, 500, 'clodagh-da-paixao-683851-unsplash.jpg', 'good one', 301000, 'oil', '2019-02-21 11:11:08', '2019-02-20', 'available'),
+(5, 'smp1613s', 'image3', 'oil', 500, 500, 'federica-campanaro-27450-unsplash.jpg', 'good one asfjdsfj asdjfklasdklf sadfjaksdfj asjdfkl;jasdklf asjdfkljksadf sdjfklasjdkf adsklfjkj', 130000, 'oil', '2019-02-21 11:11:08', '2019-02-20', 'available'),
+(6, 'smp1613s', 'image3', 'oil', 500, 500, 'steve-johnson-1266861-unsplash.jpg', 'good one asdfjkkdfskjskf sdfjklsdf dsfk asdfkj dsfkla sdjfl;jasf kjsadlf', 3110000, 'oil', '2019-02-21 11:11:08', '2019-02-20', 'available'),
+(7, 'smp1613', 'monalisa''s smile', 'oil', 5000, 5000, 'tehrantaboo5-800450.jpg', 'somthing amazing', 500000, 'poterait', '2019-03-10 11:19:03', '0000-00-00', 'available'),
+(8, 'smp1613', 'myname', 'oil', 5000, 5000, 'samplepng.png', 'somthing amazing', 432895, 'poterait', '2019-03-10 11:23:32', '0000-00-00', 'available');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `cart_id` int(11) NOT NULL,
+  `username` varchar(15) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`cart_id`, `username`) VALUES
+(1, 'smp161'),
+(4, 'smp1613'),
+(5, 'smp1613s'),
+(6, 'sp1613');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart_content`
+--
+
+CREATE TABLE `cart_content` (
+  `cart_id` int(11) NOT NULL,
+  `art_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sales_order`
+--
+
+CREATE TABLE `sales_order` (
+  `sale_id` int(11) NOT NULL,
+  `username` varchar(15) NOT NULL,
+  `order_status` varchar(256) NOT NULL,
+  `dely_date` date NOT NULL,
+  `dely_addr` varchar(256) NOT NULL,
+  `sale_amount` float NOT NULL,
+  `sale_date` datetime NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sales_order`
+--
+
+INSERT INTO `sales_order` (`sale_id`, `username`, `order_status`, `dely_date`, `dely_addr`, `sale_amount`, `sale_date`) VALUES
+(9, 'sp1613', 'on time', '2019-03-16', '20,chirag park', 711000, '2019-03-11 13:49:54'),
+(10, 'sp1613', 'on time', '2019-03-16', '20,chirag park', 711000, '2019-03-11 13:52:13'),
+(11, 'sp1613', 'on time', '2019-03-16', '20,chirag park', 410000, '2019-03-11 13:57:15'),
+(12, 'sp1613', 'on time', '2019-03-16', '20,chirag park', 800000, '2019-03-11 14:34:28'),
+(13, 'sp1613', 'on time', '2019-03-16', '20,chirag park', 110000, '2019-03-11 14:35:40'),
+(14, 'sp1613', 'on time', '2019-03-16', '20,chirag park', 300000, '2019-03-11 14:36:14'),
+(15, 'sp1613', 'on time', '2019-03-16', '20,chirag park', 301000, '2019-03-11 14:38:08'),
+(16, 'sp1613', 'on time', '2019-03-16', '20,chirag park', 110000, '2019-03-11 14:40:37'),
+(17, 'sp1613', 'on time', '2019-03-16', '20,chirag park', 300000, '2019-03-11 14:42:01'),
+(18, 'sp1613', 'on time', '2019-03-16', '20,chirag park', 711000, '2019-03-11 14:46:51'),
+(19, 'sp1613', 'on time', '2019-03-16', '20,chirag park', 410000, '2019-03-11 14:59:00'),
+(20, '', 'on time', '2019-03-16', '', 0, '2019-03-11 15:08:25'),
+(21, '', 'on time', '2019-03-16', '', 0, '2019-03-11 15:10:02'),
+(22, 'sp1613', 'on time', '2019-03-16', '20,chirag park', 300000, '2019-03-11 15:22:13');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sales_order_detail`
+--
+
+CREATE TABLE `sales_order_detail` (
+  `sale_id` int(11) NOT NULL,
+  `art_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sales_order_detail`
+--
+
+INSERT INTO `sales_order_detail` (`sale_id`, `art_id`) VALUES
+(9, 2),
+(10, 2),
+(11, 2),
+(12, 2),
+(14, 2),
+(17, 2),
+(18, 2),
+(19, 2),
+(22, 2),
+(10, 3),
+(11, 3),
+(13, 3),
+(16, 3),
+(18, 3),
+(19, 3),
+(10, 4),
+(15, 4),
+(18, 4),
+(12, 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `username` varchar(15) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `password` varchar(10) DEFAULT NULL,
+  `email` varchar(30) DEFAULT NULL,
+  `contact` varchar(10) DEFAULT NULL,
+  `gender` varchar(6) DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `posted` datetime DEFAULT NULL,
+  `user_addr` varchar(256) NOT NULL,
+  `user_photo` varchar(256) NOT NULL,
+  `user_city` varchar(256) NOT NULL,
+  `user_pincode` varchar(256) NOT NULL,
+  `user_state` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`username`, `name`, `password`, `email`, `contact`, `gender`, `dob`, `posted`, `user_addr`, `user_photo`, `user_city`, `user_pincode`, `user_state`) VALUES
+('smp161', 'swar patel', '123456', 'smp1613@gmail.com', '1234567890', 'male', '2019-02-13', '2019-02-21 00:00:00', '20,chirag park', '1.jpg', 'nadiad', '387002', 'gujarat'),
+('smp1613', 'swar patel', '123456', 'smp1613@gmail.com', '1234567890', 'male', NULL, NULL, '', '', '', '', ''),
+('smp1613s', 'swar patel', '123456', 'smp1613@gmail.com', '9879632171', 'male', '2019-02-13', '2019-02-21 00:00:00', '20,chirag park', '', 'nadiad', '387002', 'gujarat'),
+('sp1613', 'Swar Patel', '1234567890', 'smp1613@gmail.com', '9879632171', 'male', '2019-03-20', '2019-03-10 17:28:28', '20,chirag park', 'sp1613.jpg', 'nadiad', '387002', 'Gujarat');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `art`
+--
+ALTER TABLE `art`
+  ADD PRIMARY KEY (`art_id`),
+  ADD KEY `user_art_fk` (`username`);
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`cart_id`),
+  ADD KEY `username` (`username`);
+
+--
+-- Indexes for table `cart_content`
+--
+ALTER TABLE `cart_content`
+  ADD PRIMARY KEY (`art_id`,`cart_id`),
+  ADD KEY `cart_id` (`cart_id`);
+
+--
+-- Indexes for table `sales_order`
+--
+ALTER TABLE `sales_order`
+  ADD PRIMARY KEY (`sale_id`);
+
+--
+-- Indexes for table `sales_order_detail`
+--
+ALTER TABLE `sales_order_detail`
+  ADD PRIMARY KEY (`sale_id`,`art_id`),
+  ADD KEY `art_id` (`art_id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `art`
+--
+ALTER TABLE `art`
+  MODIFY `art_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `sales_order`
+--
+ALTER TABLE `sales_order`
+  MODIFY `sale_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `art`
+--
+ALTER TABLE `art`
+  ADD CONSTRAINT `user_art_fk` FOREIGN KEY (`username`) REFERENCES `user` (`username`);
+
+--
+-- Constraints for table `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`username`) REFERENCES `user` (`username`);
+
+--
+-- Constraints for table `cart_content`
+--
+ALTER TABLE `cart_content`
+  ADD CONSTRAINT `cart_content_ibfk_1` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`cart_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cart_content_ibfk_2` FOREIGN KEY (`art_id`) REFERENCES `art` (`art_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `sales_order_detail`
+--
+ALTER TABLE `sales_order_detail`
+  ADD CONSTRAINT `sales_order_detail_ibfk_1` FOREIGN KEY (`art_id`) REFERENCES `art` (`art_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `sales_order_detail_ibfk_2` FOREIGN KEY (`sale_id`) REFERENCES `sales_order` (`sale_id`) ON DELETE CASCADE ON UPDATE CASCADE;
